@@ -23,16 +23,17 @@ namespace CodeBase.Hero
     public AnimatorState State { get; private set; }
     
     public Animator Animator;
+    public CharacterController CharacterController;
+    
+    private void Update()
+    {
+      Animator.SetFloat(MoveHash, CharacterController.velocity.magnitude, 0.1f, Time.deltaTime);
+    }
 
     public bool IsAttacking => State == AnimatorState.Attack;
-    
-
     public void PlayHit() => Animator.SetTrigger(HitHash);
-    
     public void PlayAttack() => Animator.SetTrigger(AttackHash);
-
     public void PlayDeath() =>  Animator.SetTrigger(DieHash);
-
     public void ResetToIdle() => Animator.Play(_idleStateHash, -1);
     
     public void EnteredState(int stateHash)

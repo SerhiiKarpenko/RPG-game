@@ -943,6 +943,28 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f850be5ebb1538841a32a8166b111f5d, type: 3}
+--- !u!1 &1091416316 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1269585577436207702, guid: fe691d08050018a4b9669e93dfc6295a,
+    type: 3}
+  m_PrefabInstance: {fileID: 1269585577600430104}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1091416320
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1091416316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ca149e1460543bb9eb578d24d9b18f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Distance: 7
+  RotationAngleX: 55
+  OffsetY: 0.5
+  _following: {fileID: 0}
 --- !u!1001 &1487114695
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1253,8 +1275,50 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1941000699, guid: 181862a89f60d7a459002f9870860ad4, type: 3}
+      propertyPath: CharacterController
+      value: 
+      objectReference: {fileID: 1906629526}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 181862a89f60d7a459002f9870860ad4, type: 3}
+--- !u!1 &1906629524 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 176288, guid: 181862a89f60d7a459002f9870860ad4,
+    type: 3}
+  m_PrefabInstance: {fileID: 1906629523}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1906629525
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1906629524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e9f9d809676c2f4e998a385fdfa9194, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CharacterController: {fileID: 1906629526}
+  MovementSpeed: 4
+--- !u!143 &1906629526
+CharacterController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1906629524}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Height: 2
+  m_Radius: 1
+  m_SlopeLimit: 45
+  m_StepOffset: 0.3
+  m_SkinWidth: 0.08
+  m_MinMoveDistance: 0.001
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1001 &2084704804
 PrefabInstance:
   m_ObjectHideFlags: 0
