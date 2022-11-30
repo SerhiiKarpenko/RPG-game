@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace CodeBase.Infrastructure 
@@ -8,7 +9,16 @@ namespace CodeBase.Infrastructure
 		private void Awake()
 		{
 			_game = new Game();
+			_game.StateMachine.Enter<BootstrapState>();
 			DontDestroyOnLoad(this);
+		}
+	}
+
+	public class SceneLoader
+	{
+		public void LoadScene(string name, Action onLoaded = null)
+		{
+			
 		}
 	}
 }
