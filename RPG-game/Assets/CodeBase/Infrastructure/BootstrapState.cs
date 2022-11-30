@@ -21,10 +21,8 @@ namespace CodeBase.Infrastructure
 			_sceneLoader.Load(Initial, onLoaded: EnterLoadLevel);
 		}
 
-		private void EnterLoadLevel()
-		{
-			
-		}
+		private void EnterLoadLevel() => 
+			_stateMachine.Enter<LoadLevelState, string>("Main");
 
 		private void RegisterServices()
 		{
@@ -40,7 +38,8 @@ namespace CodeBase.Infrastructure
 		{
 			if (Application.isEditor)
 				return new StandaloneInputService();
-			return new MobileInputService();
+			else
+				return new MobileInputService();
 		}
 
 	}
