@@ -7,7 +7,7 @@ namespace CodeBase.Infrastructure
 		private Game _game;
 		private void Awake()
 		{
-			_game = new Game();
+			_game = new Game(this);
 			_game.StateMachine.Enter<BootstrapState>();
 			DontDestroyOnLoad(this);
 		}
