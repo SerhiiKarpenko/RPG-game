@@ -1,4 +1,4 @@
-using CodeBase.Infrastructure;
+using CodeBase.Infrastructure.Boot;
 using CodeBase.Services.Input;
 using UnityEngine;
 

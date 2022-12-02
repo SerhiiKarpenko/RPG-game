@@ -1,4 +1,5 @@
-﻿using CodeBase.Services.Input;
+﻿using CodeBase.Infrastructure.Boot;
+using CodeBase.Services.Input;
 using UnityEngine;
 
 namespace CodeBase.Infrastructure

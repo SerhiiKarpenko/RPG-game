@@ -1,6 +1,6 @@
 ﻿using CodeBase.Services.Input;
 
-namespace CodeBase.Infrastructure
+namespace CodeBase.Infrastructure.Boot
 {
 	public class Game
 	{
