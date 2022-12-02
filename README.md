@@ -5,4 +5,4 @@ In this project was used: DI(dependency injection), SOLID, architecture projecti
 W, A, S, D
 
 # Created by
-<a href="github.com/SerhiiKarpenko" target="_blank">Serhii Karpenko</a>
+ [Serhii Karpenko](https://github.com/SerhiiKarpenko)
