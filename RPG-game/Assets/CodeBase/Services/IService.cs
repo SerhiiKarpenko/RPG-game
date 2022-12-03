@@ -1,4 +1,7 @@
 ﻿namespace CodeBase.Infrastructure.Services
 {
-	public interface IService { }
+	public interface IService
+	{
+		void Dispose();
+	}
 }

@@ -12,10 +12,15 @@ namespace CodeBase.Infrastructure
 			_assets = assets;
 		}
 		
+		~GameFactory() => 
+			Dispose();
+
 		public GameObject CreateHero(GameObject at) => 
 			_assets.Instantiate(AssetPath.HeroPath, at: at.transform.position);
 
 		public void CreateHud() => 
 			_assets.Instantiate(AssetPath.HudPath);
+
+		public void Dispose() { }
 	}
 }

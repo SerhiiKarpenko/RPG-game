@@ -15,5 +15,8 @@ namespace CodeBase.Infrastructure.Asset_Management
 			var heroPrefab = Resources.Load<GameObject>(path);
 			return Object.Instantiate(heroPrefab, at, Quaternion.identity);
 		}
+
+		public void Dispose() { }
 	}
+	
 }
