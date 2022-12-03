@@ -1,4 +1,4 @@
-using CodeBase.Infrastructure.Boot;
+using CodeBase.Infrastructure.Services;
 using CodeBase.Services.Input;
 using UnityEngine;
 
@@ -13,7 +13,7 @@ namespace CodeBase.Hero
 
 		private void Awake()
 		{
-			_inputService = Game.InputService;
+			_inputService = AllServices.Container.Single<IInputService>();
 			_camera = Camera.main;
 		}
 		

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CodeBase.Infrastructure.Services;
+using System;
 using System.Collections.Generic;
 
 namespace CodeBase.Infrastructure
@@ -8,12 +9,12 @@ namespace CodeBase.Infrastructure
 		private readonly Dictionary<Type, IExitableState> _states;
 		private IExitableState _activeState;
 
-		public GameStateMachine(SceneLoader sceneLoader, LoadingCurtain loadingCurtain)
+		public GameStateMachine(SceneLoader sceneLoader, LoadingCurtain loadingCurtain, AllServices services)
 		{
 			_states = new Dictionary<Type, IExitableState>()
 			{
-				[typeof(BootstrapState)] = new BootstrapState(this, sceneLoader),
-				[typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader, loadingCurtain),
+				[typeof(BootstrapState)] = new BootstrapState(this, sceneLoader, services),
+				[typeof(LoadLevelState)] = new LoadLevelState(this, sceneLoader, loadingCurtain, services.Single<IGameFactory>()),
 				[typeof(GameLoopState)] = new GameLoopState(this),
 			};
 		}
