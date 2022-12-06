@@ -25,10 +25,8 @@ namespace CodeBase.Infrastructure
 		public void CreateHud() => 
 			InstantiateRegistered(AssetPath.HudPath);
 
-		public void Dispose()
-		{
+		public void Dispose() => 
 			CleanUp();
-		}
 
 		public void CleanUp()
 		{

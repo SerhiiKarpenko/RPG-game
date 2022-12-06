@@ -11,7 +11,7 @@ namespace CodeBase.Infrastructure.Services.Save_Load
 		private readonly IPersistentProgressService _progressService;
 		private readonly IGameFactory _gameFactory;
 
-		public SaveLoadService(IPersistentProgressService progressService ,IGameFactory gameFactory)
+		public SaveLoadService(IPersistentProgressService progressService , IGameFactory gameFactory)
 		{
 			_progressService = progressService;
 			_gameFactory = gameFactory;
