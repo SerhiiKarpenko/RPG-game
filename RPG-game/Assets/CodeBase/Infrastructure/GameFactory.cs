@@ -1,5 +1,6 @@
 ﻿using CodeBase.Hero;
 using CodeBase.Infrastructure.Asset_Management;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,8 +20,15 @@ namespace CodeBase.Infrastructure
 		~GameFactory() => 
 			Dispose();
 
-		public GameObject CreateHero(GameObject at) => 
-			InstantiateRegistered(AssetPath.HeroPath, at.transform.position);
+		public GameObject CreateHero(GameObject at)
+		{
+			HeroGameObject = InstantiateRegistered(AssetPath.HeroPath, at.transform.position);
+			HeroCreated?.Invoke();
+			return HeroGameObject;
+		}
+
+		public GameObject HeroGameObject { get; set; }
+		public event Action HeroCreated;
 
 		public void CreateHud() => 
 			InstantiateRegistered(AssetPath.HudPath);
