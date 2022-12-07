@@ -1,12 +1,11 @@
 using CodeBase.Infrastructure;
 using CodeBase.Infrastructure.Services;
-using System;
 using UnityEngine;
 using UnityEngine.AI;
 
 namespace CodeBase.Enemy
 {
-	public class AgentMoveToPlayer : MonoBehaviour
+	public class AgentMoveToPlayer : Follow
 	{
 		public NavMeshAgent Agent;
 		private Transform _heroTransform;
