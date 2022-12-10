@@ -30,8 +30,11 @@ namespace CodeBase.Infrastructure
 		public GameObject HeroGameObject { get; set; }
 		public event Action HeroCreated;
 
-		public void CreateHud() => 
-			InstantiateRegistered(AssetPath.HudPath);
+		public GameObject CreateHud()
+		{
+			GameObject hud = InstantiateRegistered(AssetPath.HudPath);
+			return hud;
+		}
 
 		public void Dispose() => 
 			CleanUp();

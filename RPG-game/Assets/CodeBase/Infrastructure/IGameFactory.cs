@@ -12,7 +12,7 @@ namespace CodeBase.Infrastructure
 		GameObject HeroGameObject { get; }
 		event Action HeroCreated;
 		
-		void CreateHud();
+		GameObject CreateHud();
 		List<ISavedProgressReader> ProgressReaders { get; }
 		List<ISavedProgress> ProgressWriters { get; }
 		void CleanUp();
