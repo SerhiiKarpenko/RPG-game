@@ -7,8 +7,9 @@ namespace CodeBase.Hero
 	[RequireComponent(typeof(HeroAnimator))]
 	public class HeroHealth : MonoBehaviour, ISavedProgress
 	{
-		[SerializeField] private HeroAnimator _heroAnimator;
 		public Action HealthChange;
+		
+		[SerializeField] private HeroAnimator _heroAnimator;
 		private State _progressHeroState;
 
 		public float MaxHealth 
