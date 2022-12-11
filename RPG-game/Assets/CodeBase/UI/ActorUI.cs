@@ -1,5 +1,4 @@
 ﻿using CodeBase.Hero;
-using System;
 using UnityEngine;
 
 namespace CodeBase.UI

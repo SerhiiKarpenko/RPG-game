@@ -1,3 +1,4 @@
+using CodeBase.Hero;
 using CodeBase.Infrastructure;
 using CodeBase.Infrastructure.Services;
 using CodeBase.Physics_Debug;
@@ -13,14 +14,15 @@ namespace CodeBase.Enemy
 		public float Cleavage = 0.5f;
 		public float EffectiveDistance = 0.5f;
 		[SerializeField] private EnemyAnimator _enemyAnimator;
-		[SerializeField] private IGameFactory _factory;
 		[SerializeField] private Transform _heroTransform;
 		[SerializeField] private float _attackCooldown = 2f;
+		[SerializeField] private float _damage = 10f;
 		private float _currentAttackCooldown;
 		private bool _isAttacking;
+		private bool _attackIsActive;
 		private int _layerMask;
 		private Collider[] _hits = new Collider[1];
-		private bool _attackIsActive;
+		private IGameFactory _factory;
 
 		private void Awake()
 		{
@@ -42,6 +44,7 @@ namespace CodeBase.Enemy
 			if (Hit(out Collider hit))
 			{
 				PhysicsDebug.DrawDebug(StartPoint(), Cleavage, 1);
+				hit.transform.GetComponent<HeroHealth>().TakeDamage(_damage);
 			}
 		}
 

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace CodeBase.Data
 {
@@ -13,7 +12,6 @@ namespace CodeBase.Data
 		{
 			WorldData = new WorldData(initialLevel);
 			HeroState = new State();
-
 		}
 	}
 }

@@ -23,9 +23,11 @@ namespace CodeBase.Hero
 			get => _progressHeroState.CurrentHeroHealth;
 			set
 			{
-				_progressHeroState.CurrentHeroHealth = value;
 				if (_progressHeroState.CurrentHeroHealth != value)
+				{
+					_progressHeroState.CurrentHeroHealth = value;
 					HealthChange?.Invoke();
+				}
 			}
 		}
 
