@@ -402,6 +402,9 @@ GameObject:
   - component: {fileID: 6275706722905742388}
   - component: {fileID: 8029473104933185189}
   - component: {fileID: 1661000707776834826}
+  - component: {fileID: 2734103207517259812}
+  - component: {fileID: 6861045946299518123}
+  - component: {fileID: 9146090272062821621}
   m_Layer: 0
   m_Name: Rotating Lich
   m_TagString: Untagged
@@ -425,6 +428,7 @@ Transform:
   - {fileID: 4256255772079902}
   - {fileID: 8074318454464722776}
   - {fileID: 5693814268883798088}
+  - {fileID: 7384955476396221396}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -541,6 +545,7 @@ MonoBehaviour:
   _enemyAnimator: {fileID: 1927965557457426115}
   _heroTransform: {fileID: 0}
   _attackCooldown: 2
+  _damage: 10
 --- !u!114 &1661000707776834826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -555,6 +560,51 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Attack: {fileID: 8029473104933185189}
   TriggerObserver: {fileID: 1130783228467612716}
+--- !u!114 &2734103207517259812
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1500939411536426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 909f0ff6b24b4ed49c51c2a69810b412, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 0
+  _currentHealth: 0
+  _enemyAnimator: {fileID: 0}
+--- !u!114 &6861045946299518123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1500939411536426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1d6992a24234c83ab3b07cd14b09fca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemyAnimator: {fileID: 1927965557457426115}
+  _enemyHealth: {fileID: 2734103207517259812}
+  _deathFx: {fileID: 100004, guid: 4a89ee3e92d9b4443827d352f787c671, type: 3}
+--- !u!114 &9146090272062821621
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1500939411536426}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 909f0ff6b24b4ed49c51c2a69810b412, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealth: 4
+  _currentHealth: 4
+  _enemyAnimator: {fileID: 1927965557457426115}
 --- !u!1 &1537370055453520
 GameObject:
   m_ObjectHideFlags: 0
@@ -1096,3 +1146,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a300431ff75540938219cd3b9e0994b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &7814095073421671684
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7384955476396221396}
+  - component: {fileID: 668795429724618838}
+  m_Layer: 15
+  m_Name: Hurt Box
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7384955476396221396
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7814095073421671684}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4665124114459090}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &668795429724618838
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7814095073421671684}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.5, y: 2, z: 1.5}
+  m_Center: {x: 0, y: 1, z: 0}
