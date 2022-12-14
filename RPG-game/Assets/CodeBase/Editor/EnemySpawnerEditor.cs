@@ -2,7 +2,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace CodeBase.Editor
+namespace Editor
 {
 	[CustomEditor(typeof(EnemySpawner))]
 	public class EnemySpawnerEditor : UnityEditor.Editor
