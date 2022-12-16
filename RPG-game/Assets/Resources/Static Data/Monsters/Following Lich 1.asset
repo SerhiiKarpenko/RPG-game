@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bccc9aa4cc34031b2ae9192274898f5, type: 3}
+  m_Name: Following Lich 1
+  m_EditorClassIdentifier: 
+  Hp: 5
+  Damage: 5
+  EffectiveDistance: 0.5
+  Cleavage: 0.5
+  MoveSpeed: 2
+  MonsterTypeId: 0
+  Prefab: {fileID: 1500939411536426, guid: 274c4c35ed05ea14c87492064b3cadfd, type: 3}

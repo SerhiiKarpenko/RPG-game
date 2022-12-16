@@ -10,30 +10,19 @@ namespace CodeBase.Enemy
 		private Transform _heroTransform;
 		private IGameFactory _gameFactory;
 		private Vector3 _positionToLook;
-
-		private void Start()
-		{
-			_gameFactory = AllServices.Container.Single<IGameFactory>();
-			if (HeroInitialized())
-				InitializeHeroTransform();
-			else
-				_gameFactory.HeroCreated += InitializeHeroTransform;
-		}
-
+		
 		private void Update()
 		{
 			if (!HeroInitialized()) return;
 			LookAtHero();
 		}
 
+		public void Construct(Transform transform) => 
+			_heroTransform = transform;
+
 		private bool HeroInitialized() => 
 			_heroTransform != null;
 
-		private void HeroCreated() => 
-			InitializeHeroTransform();
-
-		private void InitializeHeroTransform() => 
-			_heroTransform = _gameFactory.HeroGameObject.transform;
 
 		private void LookAtHero()
 		{

@@ -1,5 +1,4 @@
 using CodeBase.Infrastructure;
-using CodeBase.Infrastructure.Services;
 using CodeBase.Logic.Interfaces;
 using CodeBase.Physics_Debug;
 using System.Linq;
@@ -13,10 +12,10 @@ namespace CodeBase.Enemy
 	{
 		public float Cleavage = 0.5f;
 		public float EffectiveDistance = 0.5f;
+		public float Damage = 10f;
 		[SerializeField] private EnemyAnimator _enemyAnimator;
 		[SerializeField] private Transform _heroTransform;
 		[SerializeField] private float _attackCooldown = 2f;
-		[SerializeField] private float _damage = 10f;
 		private float _currentAttackCooldown;
 		private bool _isAttacking;
 		private bool _attackIsActive;
@@ -26,8 +25,6 @@ namespace CodeBase.Enemy
 
 		private void Awake()
 		{
-			_factory = AllServices.Container.Single<IGameFactory>();
-			_factory.HeroCreated += OnHeroCreated;
 			_layerMask = 1 << LayerMask.NameToLayer("Player");
 		}
 
@@ -39,12 +36,15 @@ namespace CodeBase.Enemy
 				StartAttack();
 		}
 
+		public void Construct(Transform transform) => 
+			_heroTransform = transform;
+
 		private void OnAttack()
 		{
 			if (Hit(out Collider hit))
 			{
 				PhysicsDebug.DrawDebug(StartPoint(), Cleavage, 1);
-				hit.transform.GetComponent<IHealth>().TakeDamage(_damage);
+				hit.transform.GetComponent<IHealth>().TakeDamage(Damage);
 			}
 		}
 
@@ -86,8 +86,6 @@ namespace CodeBase.Enemy
 		private bool CooldownIsUp() => 
 			_currentAttackCooldown <= 0;
 
-		private void OnHeroCreated() => 
-			_heroTransform = _factory.HeroGameObject.transform;
 
 		private Vector3 StartPoint() => 
 			new Vector3(transform.position.x, transform.position.y + 0.5f, transform.position.z) + transform.forward * EffectiveDistance;

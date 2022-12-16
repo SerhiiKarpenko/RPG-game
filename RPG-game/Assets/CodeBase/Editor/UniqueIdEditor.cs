@@ -13,6 +13,7 @@ namespace Editor
 		private void OnEnable()
 		{
 			var uniqueId = (UniqueId) target;
+			
 			if (IsPrefab(uniqueId))
 				return;
 			

@@ -1,5 +1,4 @@
 using CodeBase.Infrastructure;
-using CodeBase.Infrastructure.Services;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -12,35 +11,20 @@ namespace CodeBase.Enemy
 		private const float _minimalDistance = 1;
 		private IGameFactory _gameFactory;
 
-		private void Start()
-		{
-			_gameFactory = AllServices.Container.Single<IGameFactory>();
-			InitializeHeroTransform();
-		}
-
 		private void Update()
 		{
-			if (HeroInitialized() && HeroNotReached()) return;
+			SetDestinationForAgent();
+		}
+
+		private void SetDestinationForAgent()
+		{
+			if (HeroNotReached()) return;
 			Agent.destination = _heroTransform.position;
 		}
 
-		private bool HeroInitialized() => 
-			_heroTransform != null;
+		public void Construct(Transform heroTransform) => 
+			_heroTransform = heroTransform;
 
-		private void HeroCreated() => 
-			InitializeHeroTransform();
-
-		private void InitializeHeroTransform()
-		{
-			if (_gameFactory.HeroGameObject != null)
-			{
-				_heroTransform = _gameFactory.HeroGameObject.transform;
-			}
-			else
-			{
-				_gameFactory.HeroCreated += HeroCreated;
-			}
-		}
 
 		private bool HeroNotReached()
 		{

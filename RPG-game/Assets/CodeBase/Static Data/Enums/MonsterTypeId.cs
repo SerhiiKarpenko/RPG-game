@@ -4,5 +4,6 @@
 	{
 		Lich = 0,
 		Golem = 10,
+		RotatingLich = 20,
 	}
 }
