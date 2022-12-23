@@ -16,14 +16,17 @@ namespace CodeBase.Infrastructure
 	public class GameFactory : IGameFactory
 	{
 		private readonly IAssetProvider _assets;
-		private IStaticDataService _staticData;
+		private readonly IStaticDataService _staticData;
+		private readonly IRandomService _random;
+		
 		public List<ISavedProgressReader> ProgressReaders { get; } = new List<ISavedProgressReader>();
 		public List<ISavedProgress> ProgressWriters { get; } = new List<ISavedProgress>();
 
-		public GameFactory(IAssetProvider assets, IStaticDataService staticData)
+		public GameFactory(IAssetProvider assets, IStaticDataService staticData, IRandomService random)
 		{
 			_assets = assets;
 			_staticData = staticData;
+			_random = random;
 		}
 
 		~GameFactory() => 
@@ -49,8 +52,10 @@ namespace CodeBase.Infrastructure
 			monster.GetComponent<ActorUI>().Construct(health);
 			monster.GetComponent<AgentMoveToPlayer>()?.Construct(HeroGameObject.transform);
 			monster.GetComponent<NavMeshAgent>().speed = monsterData.MoveSpeed;
-			monster.GetComponentInChildren<LootSpawner>().Construct(this);
-			
+			LootSpawner lootSpawner = monster.GetComponentInChildren<LootSpawner>();
+			lootSpawner.SetLoot(monsterData.MinLoot, monsterData.MaxLoot);
+			lootSpawner.Construct(this, _random);
+
 			Attack monsterAttack = monster.GetComponent<Attack>();
 			monsterAttack.Construct(HeroGameObject.transform);
 			monsterAttack.Damage = monsterData.Damage;
