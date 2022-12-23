@@ -16,6 +16,6 @@ MonoBehaviour:
   Damage: 6
   EffectiveDistance: 0.6
   Cleavage: 0.5
-  MoveSpeed: 1
+  MoveSpeed: 1.14
   MonsterTypeId: 10
-  Prefab: {fileID: 7393697746223597700, guid: 3e9f7ce06526565448bd2224be24ac33, type: 3}
+  Prefab: {fileID: 8959162760568465667, guid: fef8ee76ba818f84b81b11da6bda5ddf, type: 3}
