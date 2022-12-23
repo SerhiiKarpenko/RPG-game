@@ -25,7 +25,7 @@ namespace CodeBase.Infrastructure
 			_assets = assets;
 			_staticData = staticData;
 		}
-		
+
 		~GameFactory() => 
 			Dispose();
 
@@ -36,6 +36,7 @@ namespace CodeBase.Infrastructure
 		}
 
 		private GameObject HeroGameObject { get; set; }
+
 		public GameObject CreateMonster(MonsterTypeId monsterTypeId, Transform parent)
 		{
 			MonsterStaticData monsterData = _staticData.ForMonster(monsterTypeId);
@@ -48,6 +49,7 @@ namespace CodeBase.Infrastructure
 			monster.GetComponent<ActorUI>().Construct(health);
 			monster.GetComponent<AgentMoveToPlayer>()?.Construct(HeroGameObject.transform);
 			monster.GetComponent<NavMeshAgent>().speed = monsterData.MoveSpeed;
+			monster.GetComponentInChildren<LootSpawner>().Construct(this);
 			
 			Attack monsterAttack = monster.GetComponent<Attack>();
 			monsterAttack.Construct(HeroGameObject.transform);
@@ -59,6 +61,9 @@ namespace CodeBase.Infrastructure
 			
 			return monster;
 		}
+
+		public GameObject CreateLoot() => 
+			InstantiateRegistered(AssetPath.Loot);
 
 		public GameObject CreateHud()
 		{
@@ -81,7 +86,7 @@ namespace CodeBase.Infrastructure
 			RegisterProgressWatchers(gameObject);
 			return gameObject;
 		}
-		
+
 		private GameObject InstantiateRegistered(string prefabPath)
 		{
 			GameObject gameObject = _assets.Instantiate(prefabPath);

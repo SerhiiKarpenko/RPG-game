@@ -16,5 +16,6 @@ namespace CodeBase.Infrastructure
 		List<ISavedProgress> ProgressWriters { get; }
 		void CleanUp();
 		void Register(ISavedProgressReader progressReader);
+		GameObject CreateLoot();
 	}
 }
