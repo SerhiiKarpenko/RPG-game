@@ -1,6 +1,7 @@
 ﻿using CodeBase.Enemy;
 using CodeBase.Hero;
 using CodeBase.Infrastructure.Asset_Management;
+using CodeBase.Infrastructure.Services.Persistent_Progress;
 using CodeBase.Logic.Interfaces;
 using CodeBase.Services;
 using CodeBase.Static_Data;
@@ -18,15 +19,17 @@ namespace CodeBase.Infrastructure
 		private readonly IAssetProvider _assets;
 		private readonly IStaticDataService _staticData;
 		private readonly IRandomService _random;
+		private readonly IPersistentProgressService _persistentProgressService;
 		
 		public List<ISavedProgressReader> ProgressReaders { get; } = new List<ISavedProgressReader>();
 		public List<ISavedProgress> ProgressWriters { get; } = new List<ISavedProgress>();
 
-		public GameFactory(IAssetProvider assets, IStaticDataService staticData, IRandomService random)
+		public GameFactory(IAssetProvider assets, IStaticDataService staticData, IRandomService random, IPersistentProgressService persistentProgressService)
 		{
 			_assets = assets;
 			_staticData = staticData;
 			_random = random;
+			_persistentProgressService = persistentProgressService;
 		}
 
 		~GameFactory() => 
@@ -67,8 +70,12 @@ namespace CodeBase.Infrastructure
 			return monster;
 		}
 
-		public GameObject CreateLoot() => 
-			InstantiateRegistered(AssetPath.Loot);
+		public LootPiece CreateLoot()
+		{
+			LootPiece lootPiece = InstantiateRegistered(AssetPath.Loot).GetComponent<LootPiece>();
+			lootPiece.Construct(_persistentProgressService.Progress.WorldData);
+			return lootPiece;
+		}
 
 		public GameObject CreateHud()
 		{

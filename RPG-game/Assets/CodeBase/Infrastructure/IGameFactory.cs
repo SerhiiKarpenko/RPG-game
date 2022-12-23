@@ -1,4 +1,5 @@
-﻿using CodeBase.Hero;
+﻿using CodeBase.Enemy;
+using CodeBase.Hero;
 using CodeBase.Infrastructure.Services;
 using CodeBase.Static_Data.Enums;
 using System.Collections.Generic;
@@ -16,6 +17,6 @@ namespace CodeBase.Infrastructure
 		List<ISavedProgress> ProgressWriters { get; }
 		void CleanUp();
 		void Register(ISavedProgressReader progressReader);
-		GameObject CreateLoot();
+		LootPiece CreateLoot();
 	}
 }
