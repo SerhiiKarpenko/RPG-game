@@ -81,6 +81,7 @@ namespace CodeBase.Infrastructure
 		public GameObject CreateHud()
 		{
 			GameObject hud = InstantiateRegistered(AssetPath.HudPath);
+			hud.GetComponentInChildren<LootCounter>().Construct(_persistentProgressService.Progress.WorldData);
 			return hud;
 		}
 
