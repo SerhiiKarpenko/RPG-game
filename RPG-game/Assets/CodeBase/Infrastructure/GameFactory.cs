@@ -55,6 +55,7 @@ namespace CodeBase.Infrastructure
 			monster.GetComponent<ActorUI>().Construct(health);
 			monster.GetComponent<AgentMoveToPlayer>()?.Construct(HeroGameObject.transform);
 			monster.GetComponent<NavMeshAgent>().speed = monsterData.MoveSpeed;
+			
 			LootSpawner lootSpawner = monster.GetComponentInChildren<LootSpawner>();
 			lootSpawner.SetLoot(monsterData.MinLoot, monsterData.MaxLoot);
 			lootSpawner.Construct(this, _random);

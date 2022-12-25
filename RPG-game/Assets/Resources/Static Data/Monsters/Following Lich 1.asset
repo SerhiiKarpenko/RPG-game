@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0bccc9aa4cc34031b2ae9192274898f5, type: 3}
   m_Name: Following Lich 1
   m_EditorClassIdentifier: 
+  MinLoot: 1
+  MaxLoot: 7
   Hp: 5
   Damage: 5
   EffectiveDistance: 0.5
