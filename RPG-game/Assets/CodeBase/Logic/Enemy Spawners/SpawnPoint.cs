@@ -6,26 +6,24 @@ using CodeBase.Infrastructure.Services;
 using CodeBase.Static_Data.Enums;
 using UnityEngine;
 
-namespace CodeBase.Logic
+namespace CodeBase.Logic.Enemy_Spawners
 {
-    [RequireComponent(typeof(UniqueId))]
-    public class EnemySpawner : MonoBehaviour, ISavedProgress
+    public class SpawnPoint : MonoBehaviour, ISavedProgress
     {
         public MonsterTypeId MonsterTypeId;
-        private string _id;
+        public string Id { get; set; }
+        
         public bool _slain;
         private IGameFactory _factory;
         private EnemyDeath _enemyDeath;
 
-        private void Awake()
-        {
-            _id = GetComponent<UniqueId>().Id;
-            _factory = AllServices.Container.Single<IGameFactory>();
-        }
+        public void Construct(IGameFactory factory) => 
+            _factory = factory;
+
 
         public void LoadProgress(PlayerProgress progress)
         {
-            if (progress.KillData.ClearedSpawners.Contains(_id))
+            if (progress.KillData.ClearedSpawners.Contains(Id))
             {
                 _slain = true;
             }
@@ -51,7 +49,7 @@ namespace CodeBase.Logic
         public void UpdateProgress(PlayerProgress progress)
         {
             if (_slain)
-                progress.KillData.ClearedSpawners.Add(_id);
+                progress.KillData.ClearedSpawners.Add(Id);
         }
     }
 }

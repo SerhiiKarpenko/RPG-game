@@ -2,6 +2,8 @@
 using CodeBase.Hero;
 using CodeBase.Infrastructure.Asset_Management;
 using CodeBase.Infrastructure.Services.Persistent_Progress;
+using CodeBase.Logic;
+using CodeBase.Logic.Enemy_Spawners;
 using CodeBase.Logic.Interfaces;
 using CodeBase.Services;
 using CodeBase.Static_Data;
@@ -83,6 +85,14 @@ namespace CodeBase.Infrastructure
 			GameObject hud = InstantiateRegistered(AssetPath.HudPath);
 			hud.GetComponentInChildren<LootCounter>().Construct(_persistentProgressService.Progress.WorldData);
 			return hud;
+		}
+
+		public void CreateSpawner(Vector3 at, string spawnerId, MonsterTypeId monsterTypeId)
+		{
+			SpawnPoint spawner = InstantiateRegistered(AssetPath.Spawner, at).GetComponent<SpawnPoint>();
+			spawner.Construct(this);
+			spawner.Id = spawnerId;
+			spawner.MonsterTypeId = monsterTypeId;
 		}
 
 		public void Dispose() => 
