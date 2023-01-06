@@ -144,7 +144,7 @@ Material:
     - _FaceColor: {r: 1, g: 1, b: 1, a: 1}
     - _GlowColor: {r: 0, g: 1, b: 0, a: 0.5}
     - _MaskCoord: {r: 0, g: 0, b: 32767, a: 32767}
-    - _OutlineColor: {r: 0.6792453, g: 0.16981132, b: 0.5273947, a: 0.79607844}
+    - _OutlineColor: {r: 0.6784314, g: 0.40962535, b: 0.16862744, a: 0.79607844}
     - _ReflectFaceColor: {r: 0, g: 0, b: 0, a: 1}
     - _ReflectOutlineColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecularColor: {r: 1, g: 1, b: 1, a: 1}
@@ -207,11 +207,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
-  m_Name: LiberationSans SDF Purple
+  m_Name: LiberationSans SDF Blank
   m_EditorClassIdentifier: 
-  hashCode: 547611485
+  hashCode: 1859603033
   material: {fileID: 2180264}
-  materialHashCode: 1958327901
+  materialHashCode: 55127257
   m_Version: 1.1.0
   m_SourceFontFileGUID: e3265ab4bf004d28a9537516768c1c75
   m_SourceFontFile_EditorRef: {fileID: 0}
