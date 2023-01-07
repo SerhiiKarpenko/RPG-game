@@ -827,6 +827,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8874440617955710234}
   - component: {fileID: 8874440617955710229}
+  - component: {fileID: 6776667768174861393}
   m_Layer: 5
   m_Name: Shop
   m_TagString: Untagged
@@ -864,6 +865,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8874440617955710235}
   m_CullTransparentMesh: 1
+--- !u!114 &6776667768174861393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8874440617955710235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c8e8686360442e7a4822da8453b4360, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CloseButton: {fileID: 8874440617928711408}
 --- !u!1 &8874440617995350562
 GameObject:
   m_ObjectHideFlags: 0
@@ -1924,7 +1938,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
+  m_fontSize: 30.3
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2085,6 +2099,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 71959e419f92c0f4c860ceb2b73a04a6, type: 3}
+--- !u!114 &8874440617928711408 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2360123271521965821, guid: 71959e419f92c0f4c860ceb2b73a04a6,
+    type: 3}
+  m_PrefabInstance: {fileID: 6622700642379188749}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &8874440619068207962 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 2360123270513621335, guid: 71959e419f92c0f4c860ceb2b73a04a6,

@@ -9,6 +9,7 @@ using CodeBase.Services;
 using CodeBase.Static_Data;
 using CodeBase.Static_Data.Enums;
 using CodeBase.UI;
+using CodeBase.UI.Elements;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
