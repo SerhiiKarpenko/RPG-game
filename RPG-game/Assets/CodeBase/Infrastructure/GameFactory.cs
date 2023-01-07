@@ -10,10 +10,12 @@ using CodeBase.Static_Data;
 using CodeBase.Static_Data.Enums;
 using CodeBase.UI;
 using CodeBase.UI.Elements;
+using CodeBase.UI.Services.Windows;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using Object = UnityEngine.Object;
+using OpenWindowButton = CodeBase.UI.Elements.OpenWindowButton;
 
 namespace CodeBase.Infrastructure
 {
@@ -23,16 +25,19 @@ namespace CodeBase.Infrastructure
 		private readonly IStaticDataService _staticData;
 		private readonly IRandomService _random;
 		private readonly IPersistentProgressService _persistentProgressService;
-		
+		private readonly IWindowService _windowService;
+
 		public List<ISavedProgressReader> ProgressReaders { get; } = new List<ISavedProgressReader>();
 		public List<ISavedProgress> ProgressWriters { get; } = new List<ISavedProgress>();
 
-		public GameFactory(IAssetProvider assets, IStaticDataService staticData, IRandomService random, IPersistentProgressService persistentProgressService)
+		public GameFactory(IAssetProvider assets, IStaticDataService staticData, IRandomService random,
+			IPersistentProgressService persistentProgressService, IWindowService windowService)
 		{
 			_assets = assets;
 			_staticData = staticData;
 			_random = random;
 			_persistentProgressService = persistentProgressService;
+			_windowService = windowService;
 		}
 
 		~GameFactory() => 
@@ -85,6 +90,12 @@ namespace CodeBase.Infrastructure
 		{
 			GameObject hud = InstantiateRegistered(AssetPath.HudPath);
 			hud.GetComponentInChildren<LootCounter>().Construct(_persistentProgressService.Progress.WorldData);
+
+			foreach (OpenWindowButton openWindowButton in hud.GetComponentsInChildren<OpenWindowButton>())
+			{
+				openWindowButton.Construct(_windowService);
+			}
+			
 			return hud;
 		}
 
