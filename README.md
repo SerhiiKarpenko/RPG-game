@@ -2,11 +2,11 @@
 In this project were used: DI(dependency injection), SOLID, architecture projecting, patterns (state machine, factory and etc.)
 
 # PC Controller
-W, A, S, D
+W, A, S, D <br>
 To attack press red button in the bottom right corner
 
 # Mobile Controller
-Joystick in the bottom left corner
+Joystick in the bottom left corner <br>
 To attack press red button in the bottom right corner
 
 # Created by
