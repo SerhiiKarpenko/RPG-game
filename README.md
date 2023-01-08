@@ -3,9 +3,14 @@ In this project were used: DI(dependency injection), SOLID, architecture project
 
 # PC Controller
 W, A, S, D
+To attack press red button in the bottom right corner
+
+# Mobile Controller
+Joystick in the bottom left corner
+To attack press red button in the bottom right corner
 
 # Created by
- [Serhii Karpenko](https://github.com/SerhiiKarpenko)
+[Serhii Karpenko](https://github.com/SerhiiKarpenko)
 
 
 # Gameplay
