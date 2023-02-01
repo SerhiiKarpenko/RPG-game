@@ -9,7 +9,7 @@ namespace CodeBase.Infrastructure
 {
 	public interface IGameFactory : IService
 	{
-		GameObject CreateHero(GameObject at);
+		GameObject CreateHero(Vector3 at);
 		GameObject CreateMonster(MonsterTypeId monsterTypeId, Transform parent);
 
 		GameObject CreateHud();
