@@ -3,7 +3,6 @@ using CodeBase.Hero;
 using CodeBase.Infrastructure.Services.Persistent_Progress;
 using CodeBase.Services;
 using CodeBase.Static_Data;
-using CodeBase.UI;
 using CodeBase.UI.Elements;
 using CodeBase.UI.Services.Factory;
 using UnityEngine;

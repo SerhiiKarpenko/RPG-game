@@ -1,5 +1,4 @@
-﻿using CodeBase.Data;
-using CodeBase.Infrastructure.Services;
+﻿using CodeBase.Infrastructure.Services;
 using CodeBase.Infrastructure.Services.Save_Load;
 using UnityEngine;
 
