@@ -9,8 +9,11 @@ EditorBuildSettings:
     path: Assets/Scenes/Initial.unity
     guid: 187fd77599c9cd74fb820164c583d25e
   - enabled: 1
-    path: Assets/Scenes/Main.unity
+    path: Assets/Scenes/Graveyard.unity
     guid: 81cdc51a8718dea428d18c2049a89e18
+  - enabled: 1
+    path: Assets/Scenes/Dungeon.unity
+    guid: 114d9f5ea8ed2eb48a0c7b4f6b7655a0
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: ad6e98b7123684f2c9167c679d0bb42c,
       type: 2}

@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace CodeBase.Infrastructure
 {
-	public class GameStateMachine
+	public class GameStateMachine : IGameStateMachine
 	{
 		private readonly Dictionary<Type, IExitableState> _states;
 		private IExitableState _activeState;
@@ -50,5 +50,9 @@ namespace CodeBase.Infrastructure
 		private TState GetState<TState>() where TState : class, IExitableState => 
 			_states[typeof(TState)] as TState;
 
+		public void Dispose()
+		{
+			
+		}
 	}
 }

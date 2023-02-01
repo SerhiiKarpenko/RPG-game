@@ -2,7 +2,6 @@ using CodeBase.Data;
 using CodeBase.Enemy;
 using CodeBase.Hero;
 using CodeBase.Infrastructure;
-using CodeBase.Infrastructure.Services;
 using CodeBase.Static_Data.Enums;
 using UnityEngine;
 
