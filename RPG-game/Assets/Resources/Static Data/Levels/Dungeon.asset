@@ -16,5 +16,5 @@ MonoBehaviour:
   EnemySpawners:
   - Id: Dungeon_84b70450-f392-4293-84a4-6e938905e17a
     MonsterTypeId: 0
-    Position: {x: 1.01, y: 0.06747532, z: 26.968903}
+    Position: {x: -6.79, y: 0.06747532, z: 26.968903}
   InitialHeroPosition: {x: -4.6, y: 0.26, z: -18.6}
