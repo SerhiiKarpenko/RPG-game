@@ -1,5 +1,5 @@
 # RPG-game
-In this project were used: DI(dependency injection), SOLID, architecture projecting, patterns (state machine, factory and etc.)
+In this project were used: DI(dependency injection), SOLID, architecture projecting, patterns (state machine, factory service locator, DI)
 
 # PC Controller
 W, A, S, D <br>
