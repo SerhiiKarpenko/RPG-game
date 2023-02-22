@@ -18,7 +18,8 @@ namespace CodeBase.Logic
 
 		private void OnTriggerEnter(Collider other)
 		{
-			if (_triggered) return;
+			if (_triggered) 
+				return;
 			
 			if (other.CompareTag(PlayerTag))
 			{
