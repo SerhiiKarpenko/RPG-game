@@ -43,11 +43,18 @@ namespace CodeBase.Infrastructure.Asset_Management
 		public void CleanUp()
 		{
 			foreach (List<AsyncOperationHandle> resourceHandles in _handles.Values)
+			{
 				foreach (AsyncOperationHandle handle in resourceHandles)
-						Addressables.Release(handle);
+				{
+					Addressables.Release(handle);
+				}
+			}
+			
+			_completedCache.Clear();
+			_handles.Clear();
 		}
 		
-		private void AddHandle<T>( string key, AsyncOperationHandle<T> handle) where T : class
+		private void AddHandle<T>(string key, AsyncOperationHandle<T> handle) where T : class
 		{
 			if (!_handles.TryGetValue(key, out List<AsyncOperationHandle> resourceHandle))
 			{

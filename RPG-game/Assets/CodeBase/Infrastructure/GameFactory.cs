@@ -39,8 +39,10 @@ namespace CodeBase.Infrastructure
 			_windowService = windowService;
 		}
 
+		/*
 		~GameFactory() => 
 			Dispose();
+			*/
 
 		public GameObject CreateHero(Vector3 at)
 		{

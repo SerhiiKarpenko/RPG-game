@@ -20,4 +20,8 @@ MonoBehaviour:
   Cleavage: 0.5
   MoveSpeed: 0
   MonsterTypeId: 20
-  Prefab: {fileID: 7377208948672121517, guid: 3fe8cfcb3d09be2449eda890b6fce089, type: 3}
+  PrefabReference:
+    m_AssetGUID: 3fe8cfcb3d09be2449eda890b6fce089
+    m_SubObjectName: 
+    m_SubObjectType: 
+    m_EditorAssetChanged: 0
