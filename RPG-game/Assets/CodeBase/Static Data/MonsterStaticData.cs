@@ -1,5 +1,6 @@
 ﻿using CodeBase.Static_Data.Enums;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 
 namespace CodeBase.Static_Data
 {
@@ -14,6 +15,6 @@ namespace CodeBase.Static_Data
 		[Range(0.5f, 1f)] public float Cleavage;
 		[Range(1f, 10f)] public float MoveSpeed;
 		public MonsterTypeId MonsterTypeId;
-		public GameObject Prefab;
+		public AssetReferenceGameObject PrefabReference;
 	}
 }

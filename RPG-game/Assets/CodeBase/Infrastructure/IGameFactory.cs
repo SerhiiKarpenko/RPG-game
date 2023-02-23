@@ -3,6 +3,7 @@ using CodeBase.Hero;
 using CodeBase.Infrastructure.Services;
 using CodeBase.Static_Data.Enums;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace CodeBase.Infrastructure
@@ -10,7 +11,7 @@ namespace CodeBase.Infrastructure
 	public interface IGameFactory : IService
 	{
 		GameObject CreateHero(Vector3 at);
-		GameObject CreateMonster(MonsterTypeId monsterTypeId, Transform parent);
+		Task<GameObject> CreateMonster(MonsterTypeId monsterTypeId, Transform parent);
 
 		GameObject CreateHud();
 		List<ISavedProgressReader> ProgressReaders { get; }

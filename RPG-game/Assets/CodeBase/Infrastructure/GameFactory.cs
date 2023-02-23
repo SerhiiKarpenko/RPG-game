@@ -12,8 +12,12 @@ using CodeBase.UI;
 using CodeBase.UI.Elements;
 using CodeBase.UI.Services.Windows;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using UnityEditor.AddressableAssets.Settings;
 using UnityEngine;
+using UnityEngine.AddressableAssets;
 using UnityEngine.AI;
+using UnityEngine.ResourceManagement.AsyncOperations;
 using Object = UnityEngine.Object;
 using OpenWindowButton = CodeBase.UI.Elements.OpenWindowButton;
 
@@ -51,10 +55,18 @@ namespace CodeBase.Infrastructure
 
 		private GameObject HeroGameObject { get; set; }
 
-		public GameObject CreateMonster(MonsterTypeId monsterTypeId, Transform parent)
+		public async Task<GameObject> CreateMonster(MonsterTypeId monsterTypeId, Transform parent)
 		{
 			MonsterStaticData monsterData = _staticData.ForMonster(monsterTypeId);
-			GameObject monster = Object.Instantiate(monsterData.Prefab, parent.position, Quaternion.identity, parent);
+
+			AsyncOperationHandle<GameObject> handle = Addressables.LoadAssetAsync<GameObject>(monsterData.PrefabReference);
+				
+			GameObject prefab = await handle
+				.Task;
+			
+			Addressables.Release(handle);
+			
+			GameObject monster = Object.Instantiate(prefab, parent.position, Quaternion.identity, parent);
 			
 			IHealth health = monster.GetComponent<IHealth>();
 			health.CurrentHealth = monsterData.Hp;

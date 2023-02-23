@@ -3,6 +3,7 @@ using CodeBase.Enemy;
 using CodeBase.Hero;
 using CodeBase.Infrastructure;
 using CodeBase.Static_Data.Enums;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace CodeBase.Logic.Enemy_Spawners
@@ -32,9 +33,9 @@ namespace CodeBase.Logic.Enemy_Spawners
             }
         }
 
-        private void Spawn()
+        private async void Spawn()
         {
-            GameObject monster = _factory.CreateMonster(MonsterTypeId, transform);
+            GameObject monster = await _factory.CreateMonster(MonsterTypeId, transform);
             _enemyDeath = monster.GetComponent<EnemyDeath>();
             _enemyDeath.Happened += Slay;
         }
