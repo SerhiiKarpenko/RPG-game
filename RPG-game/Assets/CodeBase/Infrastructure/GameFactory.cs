@@ -2,22 +2,17 @@
 using CodeBase.Hero;
 using CodeBase.Infrastructure.Asset_Management;
 using CodeBase.Infrastructure.Services.Persistent_Progress;
-using CodeBase.Logic;
 using CodeBase.Logic.Enemy_Spawners;
 using CodeBase.Logic.Interfaces;
 using CodeBase.Services;
 using CodeBase.Static_Data;
 using CodeBase.Static_Data.Enums;
-using CodeBase.UI;
 using CodeBase.UI.Elements;
 using CodeBase.UI.Services.Windows;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using UnityEditor.AddressableAssets.Settings;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
 using UnityEngine.AI;
-using UnityEngine.ResourceManagement.AsyncOperations;
 using Object = UnityEngine.Object;
 using OpenWindowButton = CodeBase.UI.Elements.OpenWindowButton;
 
@@ -59,13 +54,7 @@ namespace CodeBase.Infrastructure
 		{
 			MonsterStaticData monsterData = _staticData.ForMonster(monsterTypeId);
 
-			AsyncOperationHandle<GameObject> handle = Addressables.LoadAssetAsync<GameObject>(monsterData.PrefabReference);
-				
-			GameObject prefab = await handle
-				.Task;
-			
-			Addressables.Release(handle);
-			
+			GameObject prefab = await _assets.Load<GameObject>(monsterData.PrefabReference);
 			GameObject monster = Object.Instantiate(prefab, parent.position, Quaternion.identity, parent);
 			
 			IHealth health = monster.GetComponent<IHealth>();
@@ -126,6 +115,8 @@ namespace CodeBase.Infrastructure
 		{
 			ProgressReaders.Clear();
 			ProgressWriters.Clear();
+			
+			_assets.CleanUp();
 		}
 
 		private GameObject InstantiateRegistered(string prefabPath, Vector3 at)
