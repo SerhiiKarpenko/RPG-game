@@ -25,6 +25,26 @@ MonoBehaviour:
     m_Address: Rotating Lich
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 067fa0f81ddae0d46b1f2e557d570309
+    m_Address: Loot
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 7b52ebee6ac24094abe64f665b949f62
+    m_Address: SpawnPoint
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 181862a89f60d7a459002f9870860ad4
+    m_Address: Hero
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: f6395af14c6ae2d4ea00c7e97e633ad3
+    m_Address: Hud
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: b01acfc0ecde0a64683859e77d1637fd
+    m_Address: UIRoot
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: f027c18b64088d948b28204b97be9c08, type: 2}
   m_SchemaSet:

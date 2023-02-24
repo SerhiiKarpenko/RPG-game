@@ -39,14 +39,18 @@ namespace CodeBase.Infrastructure
 			_windowService = windowService;
 		}
 
-		/*
 		~GameFactory() => 
 			Dispose();
-			*/
 
-		public GameObject CreateHero(Vector3 at)
+		public async Task WarmUp()
 		{
-			HeroGameObject = InstantiateRegistered(AssetPath.HeroPath, at);
+			await _assets.Load<GameObject>(AssetAddress.Loot);
+			await _assets.Load<GameObject>(AssetAddress.Spawner);
+		}
+
+		public async Task<GameObject> CreateHero(Vector3 at)
+		{
+			HeroGameObject = await InstantiateRegisteredAsync(AssetAddress.HeroPath, at);
 			return HeroGameObject;
 		}
 
@@ -82,16 +86,19 @@ namespace CodeBase.Infrastructure
 			return monster;
 		}
 
-		public LootPiece CreateLoot()
+		public async Task<LootPiece> CreateLoot()
 		{
-			LootPiece lootPiece = InstantiateRegistered(AssetPath.Loot).GetComponent<LootPiece>();
+			GameObject prefab = await _assets.Load<GameObject>(AssetAddress.Loot);
+			LootPiece lootPiece = InstantiateRegistered(prefab)
+				.GetComponent<LootPiece>();
+			
 			lootPiece.Construct(_persistentProgressService.Progress.WorldData);
 			return lootPiece;
 		}
 
-		public GameObject CreateHud()
+		public async Task<GameObject> CreateHud()
 		{
-			GameObject hud = InstantiateRegistered(AssetPath.HudPath);
+			GameObject hud = await InstantiateRegisteredAsync(AssetAddress.HudPath);
 			hud.GetComponentInChildren<LootCounter>().Construct(_persistentProgressService.Progress.WorldData);
 
 			foreach (OpenWindowButton openWindowButton in hud.GetComponentsInChildren<OpenWindowButton>())
@@ -102,9 +109,12 @@ namespace CodeBase.Infrastructure
 			return hud;
 		}
 
-		public void CreateSpawner(Vector3 at, string spawnerId, MonsterTypeId monsterTypeId)
+		public async Task CreateSpawner(Vector3 at, string spawnerId, MonsterTypeId monsterTypeId)
 		{
-			SpawnPoint spawner = InstantiateRegistered(AssetPath.Spawner, at).GetComponent<SpawnPoint>();
+			GameObject prefab = await _assets.Load<GameObject>(AssetAddress.Spawner);
+			SpawnPoint spawner = InstantiateRegistered(prefab, at)
+				.GetComponent<SpawnPoint>();
+			
 			spawner.Construct(this);
 			spawner.Id = spawnerId;
 			spawner.MonsterTypeId = monsterTypeId;
@@ -121,16 +131,30 @@ namespace CodeBase.Infrastructure
 			_assets.CleanUp();
 		}
 
-		private GameObject InstantiateRegistered(string prefabPath, Vector3 at)
+		private async Task<GameObject> InstantiateRegisteredAsync(string prefabPath, Vector3 at)
 		{
-			GameObject gameObject = _assets.Instantiate(prefabPath, at: at);
+			GameObject gameObject = await _assets.Instantiate(prefabPath, at: at);
 			RegisterProgressWatchers(gameObject);
 			return gameObject;
 		}
 
-		private GameObject InstantiateRegistered(string prefabPath)
+		private async Task<GameObject> InstantiateRegisteredAsync(string prefabPath)
 		{
-			GameObject gameObject = _assets.Instantiate(prefabPath);
+			GameObject gameObject = await _assets.Instantiate(prefabPath);
+			RegisterProgressWatchers(gameObject);
+			return gameObject;
+		}
+
+		private GameObject InstantiateRegistered(GameObject prefab, Vector3 at)
+		{
+			GameObject gameObject = Object.Instantiate(prefab, at, Quaternion.identity);
+			RegisterProgressWatchers(gameObject);
+			return gameObject;
+		}
+
+		private GameObject InstantiateRegistered(GameObject prefab)
+		{
+			GameObject gameObject = Object.Instantiate(prefab);
 			RegisterProgressWatchers(gameObject);
 			return gameObject;
 		}

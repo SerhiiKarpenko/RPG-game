@@ -11,49 +11,47 @@ namespace CodeBase.Infrastructure.Asset_Management
 		private readonly Dictionary<string, AsyncOperationHandle> _completedCache = new Dictionary<string, AsyncOperationHandle>();
 		private readonly Dictionary<string, List<AsyncOperationHandle>> _handles = new Dictionary<string, List<AsyncOperationHandle>>();
 
+		public void Initialize()
+		{
+			Addressables.InitializeAsync();
+		}
+		
 		public async Task<T> Load<T>(AssetReference assetReference) where T : class
 		{
 			if (_completedCache.TryGetValue(assetReference.AssetGUID, out AsyncOperationHandle completedHandle))
 				return completedHandle.Result as T;
-			
-			AsyncOperationHandle<T> handle = Addressables.LoadAssetAsync<T>(assetReference);
-			
-			handle.Completed += h =>
-			{
-				_completedCache[assetReference.AssetGUID] = h;
-			};
 
-			AddHandle(assetReference.AssetGUID, handle);
-
-			return await handle.Task;
+			return await RunWithCacheOnComplete(
+				Addressables.LoadAssetAsync<T>(assetReference), 
+				cacheKey: assetReference.AssetGUID);
 		}
 
-		public GameObject Instantiate(string path)
+		public async Task<T> Load<T>(string address) where T : class
 		{
-			var heroPrefab = Resources.Load<GameObject>(path);
-			return Object.Instantiate(heroPrefab);
+			if (_completedCache.TryGetValue(address, out AsyncOperationHandle completedHandle))
+				return completedHandle.Result as T;
+
+			return await RunWithCacheOnComplete(
+				Addressables.LoadAssetAsync<T>(address), 
+				cacheKey: address);
 		}
 
-		public GameObject Instantiate(string path, Vector3 at)
-		{
-			var heroPrefab = Resources.Load<GameObject>(path);
-			return Object.Instantiate(heroPrefab, at, Quaternion.identity);
-		}
+		public Task<GameObject> Instantiate(string address) => 
+			Addressables.InstantiateAsync(address).Task;
+
+		public Task<GameObject> Instantiate(string address, Vector3 at) => 
+			Addressables.InstantiateAsync(address, at, Quaternion.identity).Task;
 
 		public void CleanUp()
 		{
 			foreach (List<AsyncOperationHandle> resourceHandles in _handles.Values)
-			{
 				foreach (AsyncOperationHandle handle in resourceHandles)
-				{
-					Addressables.Release(handle);
-				}
-			}
+						Addressables.Release(handle);
 			
 			_completedCache.Clear();
 			_handles.Clear();
 		}
-		
+
 		private void AddHandle<T>(string key, AsyncOperationHandle<T> handle) where T : class
 		{
 			if (!_handles.TryGetValue(key, out List<AsyncOperationHandle> resourceHandle))
@@ -63,6 +61,18 @@ namespace CodeBase.Infrastructure.Asset_Management
 			}
 
 			resourceHandle.Add(handle);
+		}
+
+		private async Task<T> RunWithCacheOnComplete<T>(AsyncOperationHandle<T> handle, string cacheKey) where T : class
+		{
+			handle.Completed += completeHandle =>
+			{
+				_completedCache[cacheKey] = completeHandle;
+			};
+
+			AddHandle(cacheKey, handle);
+
+			return await handle.Task;
 		}
 
 		public void Dispose() { }

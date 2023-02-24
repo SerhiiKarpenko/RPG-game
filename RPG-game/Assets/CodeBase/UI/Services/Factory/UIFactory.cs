@@ -6,13 +6,14 @@ using CodeBase.Static_Data.Windows;
 using CodeBase.UI.Services.Windows;
 using CodeBase.UI.Windows;
 using CodeBase.UI.Windows.Shop;
+using System.Threading.Tasks;
 using UnityEngine;
 
 namespace CodeBase.UI.Services.Factory
 {
 	public class UIFactory : IUIFactory
 	{
-		private const string UIRootPath = "UI/UI Root";
+		private const string UIRootPath = "UIRoot";
 		private readonly IAssetProvider _assets;
 		private readonly IStaticDataService _staticData;
 		private Transform _uiRoot;
@@ -35,8 +36,11 @@ namespace CodeBase.UI.Services.Factory
 			window.Construct(_adsService, _progressService);
 		}
 		
-		public void CreateUIRoot() => 
-			_uiRoot = _assets.Instantiate(UIRootPath).transform;
+		public async Task CreateUIRoot()
+		{
+			GameObject root = await _assets.Instantiate(UIRootPath);
+			_uiRoot = root.transform;
+		}
 
 		public void Dispose() { }
 	}
