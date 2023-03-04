@@ -1,0 +1,31 @@
+{
+  "Configs": [
+    {
+      "Id": "skulls100",
+      "ProductType": 0,
+      "MaxPurchaseCount": "3",
+      "ItemType": 1,
+      "Quantity": 100,
+      "Price": "2.99 $",
+      "Icon": "IAP Icon 2"
+    },
+    {
+      "Id": "skulls10",
+      "ProductType": 0,
+      "MaxPurchaseCount": "20",
+      "ItemType": 1,
+      "Quantity": 10,
+      "Price": "0.99 $",
+      "Icon": "IAP Icon 3"
+    },
+    {
+      "Id": "skulls666",
+      "ProductType": 0,
+      "MaxPurchaseCount": "1",
+      "ItemType": 1,
+      "Quantity": 666,
+      "Price": "6.66 $",
+      "Icon": "IAP Icon 18"
+    }
+  ]
+}

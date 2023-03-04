@@ -4,6 +4,7 @@ using CodeBase.Infrastructure.Services.Persistent_Progress;
 using CodeBase.Infrastructure.Services.Save_Load;
 using CodeBase.Services;
 using CodeBase.Services.Ads;
+using CodeBase.Services.IAP;
 using CodeBase.Services.Input;
 using CodeBase.Static_Data;
 using CodeBase.UI.Services.Factory;
@@ -53,11 +54,14 @@ namespace CodeBase.Infrastructure
 			_services.RegisterSingle<IRandomService>(new RandomService());
 			_services.RegisterSingle<IPersistentProgressService>(new PersistentProgressService());
 			
+			RegisterIAPService(new IAPProvider(), _services.Single<IPersistentProgressService>());
+			
 			_services.RegisterSingle<IUIFactory>(new UIFactory(
 				_services.Single<IAssetProvider>(),
 				_services.Single<IStaticDataService>(), 
 				_services.Single<IPersistentProgressService>(),
-				_services.Single<IAdsService>()));
+				_services.Single<IAdsService>(), 
+				_services.Single<IAPService>()));
 
 			_services.RegisterSingle<IWindowService>(new WindowService(_services.Single<IUIFactory>()));
 			
@@ -86,6 +90,13 @@ namespace CodeBase.Infrastructure
 			var adsService = new AdsService();
 			adsService.Initialize();
 			_services.RegisterSingle<IAdsService>(adsService);
+		}	
+		
+		private void RegisterIAPService(IAPProvider iapProvider, IPersistentProgressService progressService)
+		{
+			var iapService = new IAPService(iapProvider, progressService);
+			iapService.Initialize();
+			_services.RegisterSingle<IAPService>(iapService);
 		}
 
 		private void RegisterStaticData()
