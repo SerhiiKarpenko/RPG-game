@@ -3,6 +3,7 @@ using CodeBase.Infrastructure.Services;
 using CodeBase.Services.Input;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Zenject;
 
 namespace CodeBase.Hero
 {
@@ -15,10 +16,14 @@ namespace CodeBase.Hero
 
 		private void Awake()
 		{
-			_inputService = AllServices.Container.Single<IInputService>();
+			//_inputService = AllServices.Container.Single<IInputService>();
 			_camera = Camera.main;
 		}
-		
+
+		[Inject]
+		public void Construct(IInputService inputService) => 
+			_inputService = inputService;
+
 		private void Update()
 		{
 			Vector3 movementVector = Vector3.zero;

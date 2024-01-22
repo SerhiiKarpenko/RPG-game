@@ -20,12 +20,11 @@ namespace CodeBase.Infrastructure
 		private readonly SceneLoader _sceneLoader;
 		private readonly AllServices _services;
 
-		public BootstrapState(GameStateMachine stateMachine, SceneLoader sceneLoader, AllServices services)
+		public BootstrapState(GameStateMachine stateMachine, SceneLoader sceneLoader)
 		{
 			_stateMachine = stateMachine;
 			_sceneLoader = sceneLoader;
-			_services = services;
-			RegisterServices();
+			//RegisterServices();
 		}
 
 		public void Enter()
