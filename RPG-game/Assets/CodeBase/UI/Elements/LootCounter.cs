@@ -1,6 +1,7 @@
 ﻿using CodeBase.Data;
 using TMPro;
 using UnityEngine;
+using Zenject;
 
 namespace CodeBase.UI.Elements
 {
@@ -9,6 +10,7 @@ namespace CodeBase.UI.Elements
 		public TextMeshProUGUI Counter;
 		private WorldData _worldData;
 		
+		[Inject]
 		public void Construct(WorldData worldData)
 		{
 			_worldData = worldData;

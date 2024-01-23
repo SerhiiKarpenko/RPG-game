@@ -3,6 +3,7 @@ using CodeBase.Infrastructure.Services;
 using CodeBase.Services.Input;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Zenject;
 
 namespace CodeBase.Hero
 {
@@ -12,15 +13,33 @@ namespace CodeBase.Hero
 		public float MovementSpeed;
 		private IInputService _inputService;
 		private Camera _camera;
+		
+		private bool enabled = false;
+		
 
-		private void Awake()
+		// private void Awake()
+		// {
+		// 	//_inputService = AllServices.Container.Single<IInputService>();
+		// 	_camera = Camera.main;
+		// }
+
+		[Inject]
+		public void Construct(IInputService inputService)
 		{
-			_inputService = AllServices.Container.Single<IInputService>();
+			_inputService = inputService;
 			_camera = Camera.main;
 		}
 		
+		public void Initialize() => 
+			enabled = true;
+
 		private void Update()
 		{
+			if (!enabled)
+			{
+				return;
+			}
+			
 			Vector3 movementVector = Vector3.zero;
 			if (_inputService.Axis.sqrMagnitude > Constants.Epsilon)
 			{

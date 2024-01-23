@@ -2,7 +2,9 @@ using CodeBase.Infrastructure;
 using CodeBase.Logic.Interfaces;
 using CodeBase.Physics_Debug;
 using System.Linq;
+using CodeBase.Hero;
 using UnityEngine;
+using Zenject;
 
 
 namespace CodeBase.Enemy
@@ -69,7 +71,7 @@ namespace CodeBase.Enemy
 
 		private void StartAttack()
 		{
-			transform.LookAt(_heroTransform);
+			transform.LookAt(_heroTransform.transform);
 			_enemyAnimator.PlayAttack();
 			_isAttacking = true;
 		}

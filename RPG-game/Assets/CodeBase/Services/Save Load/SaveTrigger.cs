@@ -1,6 +1,7 @@
 ﻿using CodeBase.Infrastructure.Services;
 using CodeBase.Infrastructure.Services.Save_Load;
 using UnityEngine;
+using Zenject;
 
 namespace CodeBase.Services.SaveLoad
 {
@@ -9,7 +10,11 @@ namespace CodeBase.Services.SaveLoad
 		[SerializeField] private BoxCollider _collider;
 		private ISaveLoadService _saveLoadService;
 		private bool _saveZoneTriggered = false;
-		
+
+		[Inject]
+		public void Construct(ISaveLoadService saveLoadService) => 
+			_saveLoadService = saveLoadService;
+
 		private void Awake()
 		{
 			if (_saveZoneTriggered)
@@ -18,7 +23,7 @@ namespace CodeBase.Services.SaveLoad
 				return;
 			}
 
-			_saveLoadService = AllServices.Container.Single<ISaveLoadService>();
+			//_saveLoadService = AllServices.Container.Single<ISaveLoadService>();
 		}
 
 		private void OnTriggerEnter(Collider other)

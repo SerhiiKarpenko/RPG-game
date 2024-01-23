@@ -1,6 +1,8 @@
-﻿using CodeBase.Infrastructure;
+﻿using CodeBase.Hero;
+using CodeBase.Infrastructure;
 using CodeBase.Infrastructure.Services;
 using UnityEngine;
+using Zenject;
 
 namespace CodeBase.Enemy
 {
@@ -17,8 +19,9 @@ namespace CodeBase.Enemy
 			LookAtHero();
 		}
 
-		public void Construct(Transform transform) => 
-			_heroTransform = transform;
+		
+		public void Construct(Transform heroTransform) => 
+			_heroTransform = heroTransform;
 
 		private bool HeroInitialized() => 
 			_heroTransform != null;

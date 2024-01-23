@@ -1,8 +1,10 @@
 ﻿using CodeBase.Data;
 using System.Collections;
+using CodeBase.Infrastructure.Services.Persistent_Progress;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Experimental.GlobalIllumination;
+using Zenject;
 
 namespace CodeBase.Enemy
 {
@@ -14,10 +16,15 @@ namespace CodeBase.Enemy
 		public TextMeshPro LootText;
 		private Loot _loot;
 		private bool _picked;
-		private WorldData _worldData;
+		//private WorldData _worldData;
+		private IPersistentProgressService _persistentProgressService;
 
-		public void Construct(WorldData worldData) => 
-			_worldData = worldData;
+		[Inject]
+		public void Construct(IPersistentProgressService persistentProgressService)
+		{
+			_persistentProgressService = persistentProgressService;
+			//_worldData = worldData;
+		}
 
 		public void Initialize(Loot loot) => 
 			_loot = loot;
@@ -37,7 +44,7 @@ namespace CodeBase.Enemy
 		}
 
 		private void UpdateWorldData() => 
-			_worldData.LootData.Collect(_loot);
+			_persistentProgressService.Progress.WorldData.LootData.Collect(_loot);
 
 		private void HideSkull() => 
 			Skull.SetActive(false);

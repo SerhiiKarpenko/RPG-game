@@ -3,6 +3,7 @@ using CodeBase.Infrastructure.Services;
 using CodeBase.Logic.Interfaces;
 using CodeBase.Services.Input;
 using UnityEngine;
+using Zenject;
 
 namespace CodeBase.Hero
 {
@@ -16,15 +17,25 @@ namespace CodeBase.Hero
 		private static int _layerMask;
 		private Collider[] _hits = new Collider[3];
 		private Stats _stats;
+		private bool enabled = false;
 
-		private void Awake()
+		[Inject]
+		public void Construct(IInputService inputService)
 		{
-			_inputService = AllServices.Container.Single<IInputService>();
+			_inputService = inputService;
 			_layerMask = 1 << LayerMask.NameToLayer("Hittable");
 		}
 
+		public void Initialize() => 
+			enabled = true;
+
 		private void Update()
 		{
+			if (!enabled)
+			{
+				return;
+			}
+			
 			if (_inputService.IsAttackedButtonUp() && !_heroAnimator.IsAttacking)
 				_heroAnimator.PlayAttack();
 		}
