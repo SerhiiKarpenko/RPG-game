@@ -36,11 +36,11 @@ namespace CodeBase.Infrastructure
 			_uiFactory = uiFactory;
 		}
 
-		public void Enter(string sceneName)
+		public async void Enter(string sceneName)
 		{
 			_loadingCurtain.Show();
 			_gameFactory.CleanUp();
-			_gameFactory.WarmUp();
+			await _gameFactory.WarmUp();
 			_sceneLoader.Load(sceneName, OnLoaded);
 		}
 

@@ -10,9 +10,11 @@ using CodeBase.Static_Data.Enums;
 using CodeBase.UI.Elements;
 using CodeBase.UI.Services.Windows;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AI;
+using Zenject;
 using Object = UnityEngine.Object;
 using OpenWindowButton = CodeBase.UI.Elements.OpenWindowButton;
 
@@ -25,32 +27,39 @@ namespace CodeBase.Infrastructure
 		private readonly IRandomService _random;
 		private readonly IPersistentProgressService _persistentProgressService;
 		private readonly IWindowService _windowService;
+		private readonly DiContainer _container;
 
 		public List<ISavedProgressReader> ProgressReaders { get; } = new List<ISavedProgressReader>();
 		public List<ISavedProgress> ProgressWriters { get; } = new List<ISavedProgress>();
 
 		public GameFactory(IAssetProvider assets, IStaticDataService staticData, IRandomService random,
-			IPersistentProgressService persistentProgressService, IWindowService windowService)
+			IPersistentProgressService persistentProgressService, IWindowService windowService, DiContainer container)
 		{
 			_assets = assets;
 			_staticData = staticData;
 			_random = random;
 			_persistentProgressService = persistentProgressService;
 			_windowService = windowService;
+			_container = container;
 		}
-
-		~GameFactory() => 
-			Dispose();
 
 		public async Task WarmUp()
 		{
 			await _assets.Load<GameObject>(AssetAddress.Loot);
 			await _assets.Load<GameObject>(AssetAddress.Spawner);
+			await _assets.Load<GameObject>(AssetAddress.HeroPath);
 		}
 
 		public async Task<GameObject> CreateHero(Vector3 at)
 		{
 			HeroGameObject = await InstantiateRegisteredAsync(AssetAddress.HeroPath, at);
+			
+			HeroAttack heroAttack = HeroGameObject.GetComponent<HeroAttack>();
+			HeroMove heroMove = HeroGameObject.GetComponent<HeroMove>();
+			
+			heroAttack.Initialize();
+			heroMove.Initialize();
+			
 			return HeroGameObject;
 		}
 
@@ -61,7 +70,7 @@ namespace CodeBase.Infrastructure
 			MonsterStaticData monsterData = _staticData.ForMonster(monsterTypeId);
 
 			GameObject prefab = await _assets.Load<GameObject>(monsterData.PrefabReference);
-			GameObject monster = Object.Instantiate(prefab, parent.position, Quaternion.identity, parent);
+			GameObject monster = _container.InstantiatePrefab(prefab, parent.position, Quaternion.identity, parent);
 			
 			IHealth health = monster.GetComponent<IHealth>();
 			health.CurrentHealth = monsterData.Hp;
@@ -133,7 +142,9 @@ namespace CodeBase.Infrastructure
 
 		private async Task<GameObject> InstantiateRegisteredAsync(string prefabPath, Vector3 at)
 		{
-			GameObject gameObject = await _assets.Instantiate(prefabPath, at: at);
+			GameObject gameObject = await _assets.Instantiate(prefabPath, at);
+			_container.InjectGameObject(gameObject);
+			//_container.InstantiatePrefab(gameObject, at, Quaternion.identity, null);
 			RegisterProgressWatchers(gameObject);
 			return gameObject;
 		}

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -11,11 +12,9 @@ namespace CodeBase.Infrastructure.Asset_Management
 		private readonly Dictionary<string, AsyncOperationHandle> _completedCache = new Dictionary<string, AsyncOperationHandle>();
 		private readonly Dictionary<string, List<AsyncOperationHandle>> _handles = new Dictionary<string, List<AsyncOperationHandle>>();
 
-		public void Initialize()
-		{
-			Addressables.InitializeAsync();
-		}
-		
+		public async UniTask Initialize() => 
+			await Addressables.InitializeAsync().ToUniTask();
+
 		public async Task<T> Load<T>(AssetReference assetReference) where T : class
 		{
 			if (_completedCache.TryGetValue(assetReference.AssetGUID, out AsyncOperationHandle completedHandle))

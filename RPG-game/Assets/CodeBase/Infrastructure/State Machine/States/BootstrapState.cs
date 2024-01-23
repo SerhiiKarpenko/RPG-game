@@ -1,15 +1,8 @@
 ﻿using CodeBase.Infrastructure.Asset_Management;
 using CodeBase.Infrastructure.Services;
-using CodeBase.Infrastructure.Services.Persistent_Progress;
-using CodeBase.Infrastructure.Services.Save_Load;
 using CodeBase.Services;
 using CodeBase.Services.Ads;
 using CodeBase.Services.IAP;
-using CodeBase.Services.Input;
-using CodeBase.Static_Data;
-using CodeBase.UI.Services.Factory;
-using CodeBase.UI.Services.Windows;
-using UnityEngine;
 
 namespace CodeBase.Infrastructure
 {
@@ -18,17 +11,38 @@ namespace CodeBase.Infrastructure
 		private const string Initial = "Initial";
 		private readonly GameStateMachine _stateMachine;
 		private readonly SceneLoader _sceneLoader;
+		private readonly IAssetProvider _assetProvider;
+		private readonly IAdsService _adsService;
+		private readonly IIAPService _iapService;
+		private readonly IStaticDataService _staticDataService;
 		private readonly AllServices _services;
 
-		public BootstrapState(GameStateMachine stateMachine, SceneLoader sceneLoader)
+		public BootstrapState(
+			GameStateMachine stateMachine,
+			SceneLoader sceneLoader,
+			IAssetProvider assetProvider,
+			IAdsService adsService,
+			IIAPService iapService,
+			IStaticDataService staticDataService
+			)
 		{
 			_stateMachine = stateMachine;
 			_sceneLoader = sceneLoader;
-			//RegisterServices();
+			_assetProvider = assetProvider;
+			_adsService = adsService;
+			_iapService = iapService;
+			_staticDataService = staticDataService;
 		}
 
-		public void Enter()
+		public async void Enter()
 		{
+			// we can always make this initialize methods async, to await them all full initialize
+			await _assetProvider.Initialize();
+			
+			_staticDataService.LoadMonsters();
+			_iapService.Initialize();
+			_adsService.Initialize();
+			
 			_sceneLoader.Load(Initial, onLoaded: EnterLoadLevel);
 		}
 
@@ -39,79 +53,5 @@ namespace CodeBase.Infrastructure
 
 		private void EnterLoadLevel() => 
 			_stateMachine.Enter<LoadProgressState>();
-
-		private void RegisterServices()
-		{
-			RegisterStaticData();
-			RegisterAdsService();
-			
-			_services.RegisterSingle<IGameStateMachine>(_stateMachine);
-			_services.RegisterSingle<IInputService>(InputService());
-			
-			RegisterAssetProvider();
-			
-			_services.RegisterSingle<IRandomService>(new RandomService());
-			_services.RegisterSingle<IPersistentProgressService>(new PersistentProgressService());
-			
-			RegisterIAPService(new IAPProvider(), _services.Single<IPersistentProgressService>());
-			
-			_services.RegisterSingle<IUIFactory>(new UIFactory(
-				_services.Single<IAssetProvider>(),
-				_services.Single<IStaticDataService>(), 
-				_services.Single<IPersistentProgressService>(),
-				_services.Single<IAdsService>(), 
-				_services.Single<IAPService>()));
-
-			_services.RegisterSingle<IWindowService>(new WindowService(_services.Single<IUIFactory>()));
-			
-			_services.RegisterSingle<IGameFactory>
-			(
-				new GameFactory(
-				_services.Single<IAssetProvider>(),
-				_services.Single<IStaticDataService>(),
-				_services.Single<IRandomService>(),
-				_services.Single<IPersistentProgressService>(),
-				_services.Single<IWindowService>())
-			);
-
-			_services.RegisterSingle<ISaveLoadService>(new SaveLoadService(_services.Single<IPersistentProgressService>(), _services.Single<IGameFactory>()));
-		}
-
-		private void RegisterAssetProvider()
-		{
-			IAssetProvider assetProvider = new AssetProvider();
-			assetProvider.Initialize();
-			_services.RegisterSingle<IAssetProvider>(assetProvider);
-		}
-
-		private void RegisterAdsService()
-		{
-			var adsService = new AdsService();
-			adsService.Initialize();
-			_services.RegisterSingle<IAdsService>(adsService);
-		}	
-		
-		private void RegisterIAPService(IAPProvider iapProvider, IPersistentProgressService progressService)
-		{
-			var iapService = new IAPService(iapProvider, progressService);
-			iapService.Initialize();
-			_services.RegisterSingle<IAPService>(iapService);
-		}
-
-		private void RegisterStaticData()
-		{
-			IStaticDataService staticData = new StaticDataService();
-			staticData.LoadMonsters();
-			_services.RegisterSingle(staticData);
-		}
-
-		private static IInputService InputService()
-		{
-			if (Application.isEditor)
-				return new StandaloneInputService();
-			else
-				return new MobileInputService();
-		}
-
 	}
 }

@@ -67,18 +67,23 @@ namespace CodeBase.Infrastructure.Installers
 
         private void BindInputService()
         {
-            if (Application.isEditor)
-            {
-                Container
-                    .BindInterfacesAndSelfTo<StandaloneInputService>()
-                    .AsSingle();
-            }
-            else
-            {
-                Container
-                    .BindInterfacesAndSelfTo<MobileInputService>()
-                    .AsSingle();
-            }
+            
+            Container
+                .BindInterfacesAndSelfTo<StandaloneInputService>()
+                .AsSingle().NonLazy();
+            //
+            // if (Application.isEditor)
+            // {
+            //     Container
+            //         .BindInterfacesAndSelfTo<StandaloneInputService>()
+            //         .AsSingle();
+            // }
+            // else
+            // {
+            //     Container
+            //         .BindInterfacesAndSelfTo<MobileInputService>()
+            //         .AsSingle();
+            // }
         }
 
         private void BindStaticDataService() =>
