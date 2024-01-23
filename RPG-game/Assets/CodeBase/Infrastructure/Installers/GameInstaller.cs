@@ -9,7 +9,6 @@ using CodeBase.Services.Input;
 using CodeBase.Static_Data;
 using CodeBase.UI.Services.Factory;
 using CodeBase.UI.Services.Windows;
-using UnityEngine;
 using Zenject;
 
 namespace CodeBase.Infrastructure.Installers
@@ -25,6 +24,7 @@ namespace CodeBase.Infrastructure.Installers
         public override void InstallBindings()
         {
             //register dependencies here
+            BindGameBootstrapperFactory();
             BindGameFactory();
             BindUIFactory();
             BindGameStateMachineInstaller();
@@ -42,6 +42,11 @@ namespace CodeBase.Infrastructure.Installers
             BindWindowService();
             BindAppProvider();
         }
+
+        private void BindGameBootstrapperFactory() => 
+            Container.
+                BindInterfacesTo<GameBootstrapperFactory>()
+                .AsSingle();
 
         private void BindGameFactory() => 
             Container.

@@ -19,7 +19,7 @@ namespace CodeBase.Infrastructure.Boot
 			_gameStateMachine = gameStateMachine;
 		}
 		
-		private void Awake()
+		private void Start()
 		{
 			_gameStateMachine.RegisterState(_stateFactory.CreateState<BootstrapState>());
 			_gameStateMachine.RegisterState(_stateFactory.CreateState<LoadLevelState>());
@@ -28,8 +28,6 @@ namespace CodeBase.Infrastructure.Boot
 			
 			_gameStateMachine.Enter<BootstrapState>();
 			
-			// _game = new Game(this, Instantiate(CurtainPrefab));
-			// _game.StateMachine.Enter<BootstrapState>();
 			DontDestroyOnLoad(this);
 		}
 	}
