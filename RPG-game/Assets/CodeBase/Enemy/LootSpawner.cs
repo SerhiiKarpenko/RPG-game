@@ -3,6 +3,7 @@ using CodeBase.Infrastructure;
 using CodeBase.Services;
 using System.Threading.Tasks;
 using UnityEngine;
+using Zenject;
 
 namespace CodeBase.Enemy
 {
@@ -13,7 +14,8 @@ namespace CodeBase.Enemy
 		private IGameFactory _factory;
 		private int _lootMin;
 		private int _lootMax;
-
+		
+		[Inject]
 		public void Construct(IGameFactory factory, IRandomService random)
 		{
 			_factory = factory;

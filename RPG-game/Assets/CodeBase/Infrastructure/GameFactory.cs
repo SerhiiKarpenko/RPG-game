@@ -22,6 +22,9 @@ namespace CodeBase.Infrastructure
 {
 	public class GameFactory : IGameFactory
 	{
+		public List<ISavedProgressReader> ProgressReaders { get; } = new List<ISavedProgressReader>();
+		public List<ISavedProgress> ProgressWriters { get; } = new List<ISavedProgress>();
+		
 		private readonly IAssetProvider _assets;
 		private readonly IStaticDataService _staticData;
 		private readonly IRandomService _random;
@@ -29,8 +32,8 @@ namespace CodeBase.Infrastructure
 		private readonly IWindowService _windowService;
 		private readonly DiContainer _container;
 
-		public List<ISavedProgressReader> ProgressReaders { get; } = new List<ISavedProgressReader>();
-		public List<ISavedProgress> ProgressWriters { get; } = new List<ISavedProgress>();
+		private GameObject HeroGameObject { get; set; }
+		
 
 		public GameFactory(IAssetProvider assets, IStaticDataService staticData, IRandomService random,
 			IPersistentProgressService persistentProgressService, IWindowService windowService, DiContainer container)
@@ -56,6 +59,16 @@ namespace CodeBase.Infrastructure
 			
 			HeroAttack heroAttack = HeroGameObject.GetComponent<HeroAttack>();
 			HeroMove heroMove = HeroGameObject.GetComponent<HeroMove>();
+
+			if (_container.HasBinding<HeroMove>())
+			{
+				_container.Unbind<HeroMove>();
+				_container.Bind<HeroMove>().FromInstance(heroMove).AsSingle();
+			}
+			else
+			{
+				_container.Bind<HeroMove>().FromInstance(heroMove).AsCached();
+			}
 			
 			heroAttack.Initialize();
 			heroMove.Initialize();
@@ -63,7 +76,6 @@ namespace CodeBase.Infrastructure
 			return HeroGameObject;
 		}
 
-		private GameObject HeroGameObject { get; set; }
 
 		public async Task<GameObject> CreateMonster(MonsterTypeId monsterTypeId, Transform parent)
 		{
@@ -82,15 +94,14 @@ namespace CodeBase.Infrastructure
 			
 			LootSpawner lootSpawner = monster.GetComponentInChildren<LootSpawner>();
 			lootSpawner.SetLoot(monsterData.MinLoot, monsterData.MaxLoot);
-			lootSpawner.Construct(this, _random);
+			//lootSpawner.Construct(this, _random);
 
 			Attack monsterAttack = monster.GetComponent<Attack>();
-			monsterAttack.Construct(HeroGameObject.transform);
 			monsterAttack.Damage = monsterData.Damage;
 			monsterAttack.Cleavage = monsterData.Cleavage;
 			monsterAttack.EffectiveDistance = monsterData.EffectiveDistance;
 			
-			monster.GetComponent<RotateToHero>()?.Construct(HeroGameObject.transform);
+			//monster.GetComponent<RotateToHero>()?.Construct(HeroGameObject.transform);
 			
 			return monster;
 		}

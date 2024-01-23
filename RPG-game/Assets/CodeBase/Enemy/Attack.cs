@@ -2,7 +2,9 @@ using CodeBase.Infrastructure;
 using CodeBase.Logic.Interfaces;
 using CodeBase.Physics_Debug;
 using System.Linq;
+using CodeBase.Hero;
 using UnityEngine;
+using Zenject;
 
 
 namespace CodeBase.Enemy
@@ -14,7 +16,7 @@ namespace CodeBase.Enemy
 		public float EffectiveDistance = 0.5f;
 		public float Damage = 10f;
 		[SerializeField] private EnemyAnimator _enemyAnimator;
-		[SerializeField] private Transform _heroTransform;
+		[SerializeField] private HeroMove _heroTransform;
 		[SerializeField] private float _attackCooldown = 2f;
 		private float _currentAttackCooldown;
 		private bool _isAttacking;
@@ -36,7 +38,8 @@ namespace CodeBase.Enemy
 				StartAttack();
 		}
 
-		public void Construct(Transform transform) => 
+		[Inject]
+		public void Construct(HeroMove transform) => 
 			_heroTransform = transform;
 
 		private void OnAttack()
@@ -69,7 +72,7 @@ namespace CodeBase.Enemy
 
 		private void StartAttack()
 		{
-			transform.LookAt(_heroTransform);
+			transform.LookAt(_heroTransform.transform);
 			_enemyAnimator.PlayAttack();
 			_isAttacking = true;
 		}

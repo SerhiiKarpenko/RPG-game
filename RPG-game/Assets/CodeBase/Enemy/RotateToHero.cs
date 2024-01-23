@@ -1,13 +1,15 @@
-﻿using CodeBase.Infrastructure;
+﻿using CodeBase.Hero;
+using CodeBase.Infrastructure;
 using CodeBase.Infrastructure.Services;
 using UnityEngine;
+using Zenject;
 
 namespace CodeBase.Enemy
 {
 	public class RotateToHero : Follow
 	{
 		[SerializeField] private float _speed;
-		private Transform _heroTransform;
+		private HeroMove _heroTransform;
 		private IGameFactory _gameFactory;
 		private Vector3 _positionToLook;
 		
@@ -17,8 +19,9 @@ namespace CodeBase.Enemy
 			LookAtHero();
 		}
 
-		public void Construct(Transform transform) => 
-			_heroTransform = transform;
+		[Inject]
+		public void Construct(HeroMove heroMove) => 
+			_heroTransform = heroMove;
 
 		private bool HeroInitialized() => 
 			_heroTransform != null;
@@ -32,7 +35,7 @@ namespace CodeBase.Enemy
 
 		private void UpdatePositionToLook()
 		{
-			Vector3 headingToHero = _heroTransform.position - transform.position;
+			Vector3 headingToHero = _heroTransform.transform.position - transform.position;
 			_positionToLook = new Vector3(headingToHero.x, transform.position.y, headingToHero.z);
 		}
 
