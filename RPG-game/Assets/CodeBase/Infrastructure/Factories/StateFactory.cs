@@ -1,6 +1,6 @@
 using Zenject;
 
-namespace CodeBase.Infrastructure.Installers
+namespace CodeBase.Infrastructure.Factories
 {
     public class StateFactory
     {
