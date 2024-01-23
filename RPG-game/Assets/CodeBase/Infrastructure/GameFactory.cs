@@ -136,7 +136,8 @@ namespace CodeBase.Infrastructure
 			SpawnPoint spawner = InstantiateRegistered(prefab, at)
 				.GetComponent<SpawnPoint>();
 			
-			spawner.Construct(this);
+			_container.Inject(spawner);
+			
 			spawner.Id = spawnerId;
 			spawner.MonsterTypeId = monsterTypeId;
 		}
@@ -156,7 +157,6 @@ namespace CodeBase.Infrastructure
 		{
 			GameObject gameObject = await _assets.Instantiate(prefabPath, at);
 			_container.InjectGameObject(gameObject);
-			//_container.InstantiatePrefab(gameObject, at, Quaternion.identity, null);
 			RegisterProgressWatchers(gameObject);
 			return gameObject;
 		}
