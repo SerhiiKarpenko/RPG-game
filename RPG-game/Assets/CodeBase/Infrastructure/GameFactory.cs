@@ -60,15 +60,15 @@ namespace CodeBase.Infrastructure
 			HeroAttack heroAttack = HeroGameObject.GetComponent<HeroAttack>();
 			HeroMove heroMove = HeroGameObject.GetComponent<HeroMove>();
 
-			if (_container.HasBinding<HeroMove>())
-			{
-				_container.Unbind<HeroMove>();
-				_container.Bind<HeroMove>().FromInstance(heroMove).AsSingle();
-			}
-			else
-			{
-				_container.Bind<HeroMove>().FromInstance(heroMove).AsCached();
-			}
+			// if (_container.HasBinding<HeroMove>())
+			// {
+			// 	_container.Unbind<HeroMove>();
+			// 	_container.Bind<HeroMove>().FromInstance(heroMove).AsSingle();
+			// }
+			// else
+			// {
+			// 	_container.Bind<HeroMove>().FromInstance(heroMove).AsCached();
+			// }
 			
 			heroAttack.Initialize();
 			heroMove.Initialize();
@@ -97,11 +97,12 @@ namespace CodeBase.Infrastructure
 			//lootSpawner.Construct(this, _random);
 
 			Attack monsterAttack = monster.GetComponent<Attack>();
+			monsterAttack.Construct(HeroGameObject.transform);
 			monsterAttack.Damage = monsterData.Damage;
 			monsterAttack.Cleavage = monsterData.Cleavage;
 			monsterAttack.EffectiveDistance = monsterData.EffectiveDistance;
 			
-			//monster.GetComponent<RotateToHero>()?.Construct(HeroGameObject.transform);
+			monster.GetComponent<RotateToHero>()?.Construct(HeroGameObject.transform);
 			
 			return monster;
 		}

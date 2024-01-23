@@ -16,7 +16,7 @@ namespace CodeBase.Enemy
 		public float EffectiveDistance = 0.5f;
 		public float Damage = 10f;
 		[SerializeField] private EnemyAnimator _enemyAnimator;
-		[SerializeField] private HeroMove _heroTransform;
+		[SerializeField] private Transform _heroTransform;
 		[SerializeField] private float _attackCooldown = 2f;
 		private float _currentAttackCooldown;
 		private bool _isAttacking;
@@ -38,8 +38,7 @@ namespace CodeBase.Enemy
 				StartAttack();
 		}
 
-		[Inject]
-		public void Construct(HeroMove transform) => 
+		public void Construct(Transform transform) => 
 			_heroTransform = transform;
 
 		private void OnAttack()
