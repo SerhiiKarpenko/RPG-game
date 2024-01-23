@@ -12,11 +12,9 @@ namespace CodeBase.Services.SaveLoad
 		private bool _saveZoneTriggered = false;
 
 		[Inject]
-		public void Construct(ISaveLoadService saveLoadService)
-		{
+		public void Construct(ISaveLoadService saveLoadService) => 
 			_saveLoadService = saveLoadService;
-		}
-		
+
 		private void Awake()
 		{
 			if (_saveZoneTriggered)

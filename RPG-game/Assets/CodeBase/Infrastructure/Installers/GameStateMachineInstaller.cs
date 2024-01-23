@@ -8,7 +8,7 @@ namespace CodeBase.Infrastructure.Installers
         public override void InstallBindings()
         {
             Container.Bind<StateFactory>().AsSingle();
-            Container.Bind<GameStateMachine>().AsSingle();
+            Container.BindInterfacesAndSelfTo<GameStateMachine>().AsSingle();
             
             Debug.Log("GameStateMachineInstaller working");
         }
