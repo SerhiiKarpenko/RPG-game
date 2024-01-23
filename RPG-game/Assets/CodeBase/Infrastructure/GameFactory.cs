@@ -113,7 +113,9 @@ namespace CodeBase.Infrastructure
 			LootPiece lootPiece = InstantiateRegistered(prefab)
 				.GetComponent<LootPiece>();
 			
-			lootPiece.Construct(_persistentProgressService.Progress.WorldData);
+			_container.Inject(lootPiece);
+			
+			//lootPiece.Construct(_persistentProgressService.Progress.WorldData);
 			return lootPiece;
 		}
 
