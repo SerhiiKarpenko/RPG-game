@@ -1,4 +1,6 @@
 using CodeBase.Infrastructure.Installers;
+using CodeBase.Infrastructure.State_Machine;
+using CodeBase.Infrastructure.State_Machine.States;
 using UnityEngine;
 using Zenject;
 

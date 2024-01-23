@@ -1,9 +1,10 @@
 ﻿using CodeBase.Data;
 using CodeBase.Hero;
-using CodeBase.Infrastructure.Services.Persistent_Progress;
+using CodeBase.Infrastructure.Factories;
+using CodeBase.Services.Persistent_Progress;
 using UnityEngine;
 
-namespace CodeBase.Infrastructure.Services.Save_Load
+namespace CodeBase.Services.Save_Load
 {
 	class SaveLoadService : ISaveLoadService
 	{

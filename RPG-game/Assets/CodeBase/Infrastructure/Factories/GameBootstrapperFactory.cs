@@ -1,7 +1,7 @@
 using CodeBase.Infrastructure.Installers;
 using Zenject;
 
-namespace CodeBase.Infrastructure
+namespace CodeBase.Infrastructure.Factories
 {
     public class GameBootstrapperFactory : IGameBootstrapperFactory
     {

@@ -1,5 +1,8 @@
-﻿namespace CodeBase.Infrastructure.Services
+﻿using CodeBase.Services.Interface;
+
+namespace CodeBase.Services.AllServices
 {
+	// Previous DI example
 	public class AllServices
 	{
 		private static AllServices _instance;

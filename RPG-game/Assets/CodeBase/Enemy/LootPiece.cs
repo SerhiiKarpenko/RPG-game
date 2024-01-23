@@ -1,6 +1,6 @@
 ﻿using CodeBase.Data;
 using System.Collections;
-using CodeBase.Infrastructure.Services.Persistent_Progress;
+using CodeBase.Services.Persistent_Progress;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Experimental.GlobalIllumination;

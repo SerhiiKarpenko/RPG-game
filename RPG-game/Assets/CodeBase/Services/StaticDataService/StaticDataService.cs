@@ -1,12 +1,12 @@
-﻿using CodeBase.Services;
+﻿using System.Collections.Generic;
+using System.Linq;
+using CodeBase.Static_Data;
 using CodeBase.Static_Data.Enums;
 using CodeBase.Static_Data.Windows;
 using CodeBase.UI.Services.Windows;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
-namespace CodeBase.Static_Data
+namespace CodeBase.Services.StaticDataService
 {
 	public class StaticDataService : IStaticDataService
 	{

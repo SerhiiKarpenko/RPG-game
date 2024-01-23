@@ -1,5 +1,5 @@
-﻿using CodeBase.Infrastructure.Services;
-using System;
+﻿using System;
+using CodeBase.Services.Interface;
 using Cysharp.Threading.Tasks;
 
 namespace CodeBase.Services.Ads

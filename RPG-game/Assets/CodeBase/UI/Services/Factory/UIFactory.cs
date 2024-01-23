@@ -1,5 +1,4 @@
 ﻿using CodeBase.Infrastructure.Asset_Management;
-using CodeBase.Infrastructure.Services.Persistent_Progress;
 using CodeBase.Services;
 using CodeBase.Services.Ads;
 using CodeBase.Services.IAP;
@@ -8,6 +7,7 @@ using CodeBase.UI.Services.Windows;
 using CodeBase.UI.Windows;
 using CodeBase.UI.Windows.Shop;
 using System.Threading.Tasks;
+using CodeBase.Services.Persistent_Progress;
 using UnityEngine;
 
 namespace CodeBase.UI.Services.Factory

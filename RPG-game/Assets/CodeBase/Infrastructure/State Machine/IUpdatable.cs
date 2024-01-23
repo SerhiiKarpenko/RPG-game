@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace CodeBase.Infrastructure
+namespace CodeBase.Infrastructure.State_Machine
 {
 	public interface IUpdatable
 	{

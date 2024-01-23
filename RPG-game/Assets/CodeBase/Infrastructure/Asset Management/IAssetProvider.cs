@@ -1,5 +1,6 @@
-﻿using CodeBase.Infrastructure.Services;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using CodeBase.Services;
+using CodeBase.Services.Interface;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AddressableAssets;

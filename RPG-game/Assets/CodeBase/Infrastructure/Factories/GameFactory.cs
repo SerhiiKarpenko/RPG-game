@@ -1,24 +1,22 @@
-﻿using CodeBase.Enemy;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using CodeBase.Enemy;
 using CodeBase.Hero;
 using CodeBase.Infrastructure.Asset_Management;
-using CodeBase.Infrastructure.Services.Persistent_Progress;
 using CodeBase.Logic.Enemy_Spawners;
 using CodeBase.Logic.Interfaces;
 using CodeBase.Services;
+using CodeBase.Services.Persistent_Progress;
+using CodeBase.Services.RandomService;
 using CodeBase.Static_Data;
 using CodeBase.Static_Data.Enums;
 using CodeBase.UI.Elements;
 using CodeBase.UI.Services.Windows;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.AI;
 using Zenject;
-using Object = UnityEngine.Object;
-using OpenWindowButton = CodeBase.UI.Elements.OpenWindowButton;
 
-namespace CodeBase.Infrastructure
+namespace CodeBase.Infrastructure.Factories
 {
 	public class GameFactory : IGameFactory
 	{

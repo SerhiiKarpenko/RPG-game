@@ -1,6 +1,6 @@
 ﻿using CodeBase.Hero;
 using CodeBase.Infrastructure;
-using CodeBase.Infrastructure.Services;
+using CodeBase.Infrastructure.Factories;
 using UnityEngine;
 using Zenject;
 

@@ -1,15 +1,17 @@
-﻿using CodeBase.Camera_Logic;
+﻿using System.Threading.Tasks;
+using CodeBase.Camera_Logic;
 using CodeBase.Hero;
-using CodeBase.Infrastructure.Services.Persistent_Progress;
+using CodeBase.Infrastructure.Factories;
+using CodeBase.Infrastructure.Scene_Loader;
 using CodeBase.Services;
+using CodeBase.Services.Persistent_Progress;
 using CodeBase.Static_Data;
 using CodeBase.UI.Elements;
 using CodeBase.UI.Services.Factory;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace CodeBase.Infrastructure
+namespace CodeBase.Infrastructure.State_Machine.States
 {
 	public class LoadLevelState : IPayloadedState<string>
 	{

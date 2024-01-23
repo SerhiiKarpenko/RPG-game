@@ -1,9 +1,7 @@
-﻿using CodeBase.Infrastructure.Services;
-using CodeBase.Infrastructure.Services.Save_Load;
-using UnityEngine;
+﻿using UnityEngine;
 using Zenject;
 
-namespace CodeBase.Services.SaveLoad
+namespace CodeBase.Services.Save_Load
 {
 	public class SaveTrigger : MonoBehaviour
 	{

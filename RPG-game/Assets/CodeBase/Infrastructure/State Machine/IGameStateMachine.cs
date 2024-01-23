@@ -1,6 +1,8 @@
-﻿using CodeBase.Infrastructure.Services;
+﻿using CodeBase.Infrastructure.State_Machine.States;
+using CodeBase.Services;
+using CodeBase.Services.Interface;
 
-namespace CodeBase.Infrastructure
+namespace CodeBase.Infrastructure.State_Machine
 {
 	public interface IGameStateMachine : IService
 	{

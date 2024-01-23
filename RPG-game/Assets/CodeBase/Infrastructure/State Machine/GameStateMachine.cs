@@ -1,12 +1,8 @@
-﻿using CodeBase.Infrastructure.Services;
-using CodeBase.Infrastructure.Services.Persistent_Progress;
-using CodeBase.Infrastructure.Services.Save_Load;
-using CodeBase.Services;
-using CodeBase.UI.Services.Factory;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using CodeBase.Infrastructure.State_Machine.States;
 
-namespace CodeBase.Infrastructure
+namespace CodeBase.Infrastructure.State_Machine
 {
 	public class GameStateMachine : IGameStateMachine
 	{

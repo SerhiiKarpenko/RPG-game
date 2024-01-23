@@ -1,5 +1,4 @@
 using CodeBase.Data;
-using CodeBase.Infrastructure.Services;
 using CodeBase.Services.Input;
 using UnityEngine;
 using UnityEngine.SceneManagement;

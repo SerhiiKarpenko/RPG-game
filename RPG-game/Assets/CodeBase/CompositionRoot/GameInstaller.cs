@@ -1,17 +1,23 @@
+using CodeBase.Infrastructure;
 using CodeBase.Infrastructure.Asset_Management;
 using CodeBase.Infrastructure.Boot;
-using CodeBase.Infrastructure.Services.Persistent_Progress;
-using CodeBase.Infrastructure.Services.Save_Load;
+using CodeBase.Infrastructure.Factories;
+using CodeBase.Infrastructure.Installers;
+using CodeBase.Infrastructure.Scene_Loader;
 using CodeBase.Services;
 using CodeBase.Services.Ads;
 using CodeBase.Services.IAP;
 using CodeBase.Services.Input;
+using CodeBase.Services.Persistent_Progress;
+using CodeBase.Services.RandomService;
+using CodeBase.Services.Save_Load;
+using CodeBase.Services.StaticDataService;
 using CodeBase.Static_Data;
 using CodeBase.UI.Services.Factory;
 using CodeBase.UI.Services.Windows;
 using Zenject;
 
-namespace CodeBase.Infrastructure.Installers
+namespace CodeBase.CompositionRoot
 {
     // here we will ALL THINGS THAT NEED TO EXIST THROUGHT THE ALL GAME
     // this installer need to be applied as a component on a project context

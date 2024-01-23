@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using CodeBase.Infrastructure.Factories;
+using UnityEngine;
 using Zenject;
 
 namespace CodeBase.Infrastructure.Boot

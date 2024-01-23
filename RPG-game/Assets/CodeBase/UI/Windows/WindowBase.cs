@@ -1,5 +1,5 @@
 ﻿using CodeBase.Data;
-using CodeBase.Infrastructure.Services.Persistent_Progress;
+using CodeBase.Services.Persistent_Progress;
 using UnityEngine;
 using UnityEngine.UI;
 

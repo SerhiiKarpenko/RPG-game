@@ -1,5 +1,6 @@
 ﻿using CodeBase.Infrastructure;
-using CodeBase.Infrastructure.Services;
+using CodeBase.Infrastructure.State_Machine;
+using CodeBase.Infrastructure.State_Machine.States;
 using UnityEngine;
 using Zenject;
 

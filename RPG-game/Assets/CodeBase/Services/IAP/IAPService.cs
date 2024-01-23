@@ -1,8 +1,8 @@
 ﻿using CodeBase.Data;
-using CodeBase.Infrastructure.Services.Persistent_Progress;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using CodeBase.Services.Persistent_Progress;
 using UnityEngine.Purchasing;
 
 namespace CodeBase.Services.IAP

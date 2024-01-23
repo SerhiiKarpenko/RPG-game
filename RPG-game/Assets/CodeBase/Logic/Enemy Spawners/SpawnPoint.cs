@@ -4,6 +4,7 @@ using CodeBase.Hero;
 using CodeBase.Infrastructure;
 using CodeBase.Static_Data.Enums;
 using System.Threading.Tasks;
+using CodeBase.Infrastructure.Factories;
 using UnityEngine;
 using Zenject;
 

@@ -1,7 +1,7 @@
 ﻿using CodeBase.Infrastructure.Asset_Management;
-using CodeBase.Infrastructure.Services.Persistent_Progress;
 using CodeBase.Services.Ads;
 using CodeBase.Services.IAP;
+using CodeBase.Services.Persistent_Progress;
 using TMPro;
 using UnityEngine;
 

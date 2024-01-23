@@ -1,4 +1,4 @@
-﻿using CodeBase.Infrastructure.Services;
+﻿using CodeBase.Infrastructure.State_Machine;
 
 namespace CodeBase.Infrastructure.Boot
 {

@@ -1,12 +1,13 @@
-﻿using CodeBase.Enemy;
-using CodeBase.Hero;
-using CodeBase.Infrastructure.Services;
-using CodeBase.Static_Data.Enums;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using CodeBase.Enemy;
+using CodeBase.Hero;
+using CodeBase.Services;
+using CodeBase.Services.Interface;
+using CodeBase.Static_Data.Enums;
 using UnityEngine;
 
-namespace CodeBase.Infrastructure
+namespace CodeBase.Infrastructure.Factories
 {
 	public interface IGameFactory : IService
 	{

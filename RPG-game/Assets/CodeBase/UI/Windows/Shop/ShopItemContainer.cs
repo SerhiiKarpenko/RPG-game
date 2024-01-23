@@ -1,8 +1,8 @@
 ﻿using CodeBase.Infrastructure.Asset_Management;
-using CodeBase.Infrastructure.Services.Persistent_Progress;
 using CodeBase.Services.IAP;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using CodeBase.Services.Persistent_Progress;
 using UnityEngine;
 
 namespace CodeBase.UI.Windows.Shop

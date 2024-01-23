@@ -1,10 +1,11 @@
 ﻿using CodeBase.Infrastructure.Asset_Management;
-using CodeBase.Infrastructure.Services;
+using CodeBase.Infrastructure.Scene_Loader;
 using CodeBase.Services;
 using CodeBase.Services.Ads;
+using CodeBase.Services.AllServices;
 using CodeBase.Services.IAP;
 
-namespace CodeBase.Infrastructure
+namespace CodeBase.Infrastructure.State_Machine.States
 {
 	public class BootstrapState : IState
 	{
