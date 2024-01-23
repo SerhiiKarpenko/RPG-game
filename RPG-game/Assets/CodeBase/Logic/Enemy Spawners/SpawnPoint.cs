@@ -5,6 +5,7 @@ using CodeBase.Infrastructure;
 using CodeBase.Static_Data.Enums;
 using System.Threading.Tasks;
 using UnityEngine;
+using Zenject;
 
 namespace CodeBase.Logic.Enemy_Spawners
 {
@@ -17,6 +18,7 @@ namespace CodeBase.Logic.Enemy_Spawners
         private IGameFactory _factory;
         private EnemyDeath _enemyDeath;
 
+        [Inject]
         public void Construct(IGameFactory factory) => 
             _factory = factory;
 
